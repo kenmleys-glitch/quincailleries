@@ -5,39 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quincaillerie Bel-poze</title>
   <style>
-    :root { --p: #1e3a8a; --l: #2563eb; --bg: #f1f5f9; --c: #fff; --t: #0f172a; --m: #64748b; --d: #dc2626; --s: #16a34a; --w: #d97706; --b: #e2e8f0; }
+    :root { --p: #1e3a8a; --l: #2563eb; --bg: #f1f5f9; --c: #fff; --t: #0f172a; --m: #64748b; --d: #dc2626; --s: #16a34a; --w: #d97706; --wa: #15803d; --b: #e2e8f0; }
     * { box-sizing: border-box; font-family: system-ui, sans-serif; }
     body { margin: 0; background: var(--bg); color: var(--t); padding-bottom: 50px; }
-    header { background: var(--p); color: #fff; padding: 12px; text-align: center; }
-    header h1 { margin: 0; font-size: 1.2rem; }
-    header p { margin: 3px 0 0; font-size: 0.78rem; }
-    nav { display: flex; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--b); position: sticky; top: 0; }
-    nav button { flex: 1; min-width: 80px; padding: 10px 4px; border: none; background: none; font-weight: 600; font-size: 0.76rem; color: var(--m); border-bottom: 3px solid transparent; }
+    header { background: var(--p); color: #fff; padding: 11px; text-align: center; }
+    header h1 { margin: 0; font-size: 1.15rem; }
+    header p { margin: 2px 0 0; font-size: 0.75rem; opacity: 0.9; }
+    nav { display: grid; grid-template-columns: repeat(6, 1fr); background: #fff; border-bottom: 1px solid var(--b); position: sticky; top: 0; z-index: 10; }
+    nav button { padding: 9px 2px; border: none; background: none; font-weight: 700; font-size: 0.68rem; color: var(--m); border-bottom: 3px solid transparent; cursor: pointer; }
     nav button.active { color: var(--p); border-bottom-color: var(--p); background: #eff6ff; }
     .box { max-width: 850px; margin: 0 auto; padding: 10px; }
     .tab { display: none; }
     .tab.active { display: block; }
-    .card { background: var(--c); border-radius: 8px; padding: 12px; margin-bottom: 10px; border: 1px solid var(--b); }
-    h2 { margin: 0 0 10px; font-size: 1rem; color: var(--p); }
+    .card { background: var(--c); border-radius: 8px; padding: 11px; margin-bottom: 10px; border: 1px solid var(--b); }
+    h2 { margin: 0 0 8px; font-size: 0.98rem; color: var(--p); }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-    label { display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 2px; color: var(--m); }
-    input, select, textarea { width: 100%; padding: 8px; border: 1px solid var(--b); border-radius: 6px; font-size: 0.88rem; }
-    .btn { background: var(--l); color: #fff; border: none; padding: 9px; border-radius: 6px; font-weight: 600; width: 100%; margin-top: 8px; font-size: 0.88rem; }
-    .btn-s { background: var(--s); } .btn-w { background: var(--w); }
-    .btn-d { background: var(--d); padding: 4px 8px; font-size: 0.75rem; width: auto; margin: 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--b); }
-    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px; }
-    .st { background: #fff; padding: 8px; border-radius: 8px; text-align: center; border: 1px solid var(--b); }
-    .st span { display: block; font-size: 0.7rem; color: var(--m); }
-    .st strong { font-size: 0.92rem; color: var(--p); }
+    label { display: block; font-size: 0.72rem; font-weight: 600; margin-bottom: 2px; color: var(--m); }
+    input, select, textarea { width: 100%; padding: 7px; border: 1px solid var(--b); border-radius: 6px; font-size: 0.86rem; }
+    .btn { background: var(--l); color: #fff; border: none; padding: 9px; border-radius: 6px; font-weight: 600; width: 100%; margin-top: 8px; font-size: 0.85rem; cursor: pointer; }
+    .btn-s { background: var(--s); } .btn-w { background: var(--w); } .btn-wa { background: var(--wa); }
+    .btn-d { background: var(--d); padding: 4px 7px; font-size: 0.72rem; width: auto; margin: 0; }
+    .btn-sm { padding: 4px 8px; font-size: 0.72rem; width: auto; margin: 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    th, td { text-align: left; padding: 6px 3px; border-bottom: 1px solid var(--b); }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+    .st { background: #fff; padding: 7px 4px; border-radius: 8px; text-align: center; border: 1px solid var(--b); }
+    .st span { display: block; font-size: 0.65rem; color: var(--m); }
+    .st strong { font-size: 0.82rem; color: var(--p); }
     .rec { background: #fffbeb; border: 1px dashed var(--w); padding: 10px; border-radius: 8px; margin-top: 10px; }
     @media print { body * { visibility: hidden; } #rec, #rec * { visibility: visible; } #rec { position: absolute; left: 0; top: 0; width: 100%; } }
   </style>
 </head>
 <body>
-<header><h1 id="hName">Quincaillerie Bel-poze</h1><p id="hInfo">Thomassique, Sant | Tel: +509 0000-0000</p></header>
+<header><h1 id="hName">Quincaillerie Bel-poze</h1><p id="hInfo">Thomassique, Sant | +509 4240-2215</p></header>
 <nav>
   <button class="active" onclick="go('pos',this)">Vant</button>
   <button onclick="go('stk',this)">Stock</button>
@@ -55,44 +56,53 @@
       <div class="st"><span>Stock Ba</span><strong id="sLow" style="color:var(--d)">0</strong></div>
     </div>
     <div class="card">
-      <h2>Nouvo Vant</h2>
+      <h2>Nouvo Vant / Estimasyon (Devis)</h2>
       <div class="grid">
-        <div><label>Pwodwi</label><select id="selP"></select></div>
-        <div><label>Kantite</label><input type="number" id="sQty" value="1" min="1" /></div>
+        <div><label>Pwodwi (an detay oswa gros)</label><select id="selP"></select></div>
+        <div><label>Kantite / Mezi (egz: 1, 2.5, 10)</label><input type="number" step="0.01" id="sQty" value="1" min="0.01" /></div>
       </div>
       <button class="btn" onclick="addC()">+ Ajoute nan Panye</button>
       <div id="cSec" style="display:none;margin-top:10px;">
-        <table><thead><tr><th>Pwodwi</th><th>Kte</th><th>Total</th><th></th></tr></thead><tbody id="cBody"></tbody></table>
+        <table><thead><tr><th>Pwodwi</th><th>Kte/Inite</th><th>Total</th><th></th></tr></thead><tbody id="cBody"></tbody></table>
         <div class="grid" style="margin-top:8px;">
           <div><label>Rabè</label><input type="number" id="sDisc" value="0" oninput="renC()" /></div>
           <div><label>Livrezon</label><input type="number" id="sDel" value="0" oninput="renC()" /></div>
         </div>
-        <p style="text-align:right;font-weight:bold;">Total: <span id="cTot">0</span> <span class="cur">HTG</span></p>
+        <p style="text-align:right;font-weight:bold;margin:8px 0;">Total: <span id="cTot">0</span> <span class="cur">HTG</span></p>
         <div class="grid">
-          <div><label>Kliyan</label><input type="text" id="cName" placeholder="Non kliyan" /></div>
-          <div><label>Peman</label><select id="pMeth" onchange="togC()"><option>Kach</option><option>MonCash</option><option>NatCash</option><option>Kredi</option></select></div>
+          <div><label>Kliyan / Mèt</label><input type="text" id="cName" list="cliList" placeholder="Non kliyan" oninput="fillPhone()" /><datalist id="cliList"></datalist></div>
+          <div><label>Tel WhatsApp Kliyan</label><input type="tel" id="cPhone" placeholder="509XXXXXXXX" /></div>
+          <div><label>Mòd Peman</label><select id="pMeth" onchange="togC()"><option>Kach</option><option>MonCash</option><option>NatCash</option><option>Kredi</option></select></div>
+          <div id="advB" style="display:none;"><label>Avans Peye</label><input type="number" id="advP" value="0" /></div>
         </div>
-        <div id="advB" style="display:none;margin-top:8px;"><label>Avans Peye</label><input type="number" id="advP" value="0" /></div>
-        <button class="btn btn-s" onclick="doneS()">Valide & Fakti</button>
+        <div class="grid">
+          <button class="btn btn-s" onclick="doneS(false)">Valide Vant & Fakti</button>
+          <button class="btn btn-w" onclick="doneS(true)">Sove kòm Devis (Estimasyon)</button>
+        </div>
       </div>
     </div>
     <div id="rec" class="rec" style="display:none;"></div>
+    <div class="card"><h2>Devis / Estimasyon an Atant</h2><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="devB"></tbody></table></div>
   </div>
   <div id="stk" class="tab">
     <div class="card">
-      <h2>Ajoute Pwodwi</h2>
+      <h2>Ajoute Pwodwi & Inite Mezi</h2>
       <div class="grid">
-        <div><label>Non</label><input type="text" id="pN" placeholder="Siman Gri" /></div>
+        <div><label>Non Pwodwi</label><input type="text" id="pN" placeholder="Fil Elektrik #12" /></div>
         <div><label>Kategori</label><select id="pC"><option>Konstriksyon</option><option>Plonbri</option><option>Elektrisite</option><option>Penti</option><option>Zouti</option><option>Bwa</option></select></div>
+        <div><label>Inite Mezi</label><select id="pU"><option>Inite</option><option>Pye</option><option>Liv</option><option>Mèt</option><option>Pous</option><option>Sak</option><option>Woulo</option><option>Galon</option></select></div>
         <div><label>Pri Acha</label><input type="number" id="pCost" placeholder="1150" /></div>
         <div><label>Pri Vant</label><input type="number" id="pPrice" placeholder="1350" /></div>
-        <div><label>Stock</label><input type="number" id="pQ" placeholder="50" /></div>
+        <div><label>Stock Disponib</label><input type="number" step="0.01" id="pQ" placeholder="50" /></div>
       </div>
-      <button class="btn" onclick="saveP()">Anregistre</button>
+      <button class="btn" onclick="saveP()">Anregistre Pwodwi</button>
     </div>
     <div class="card"><h2>Stock</h2><table><thead><tr><th>Pwodwi</th><th>Acha/Vant</th><th>Stock</th><th></th></tr></thead><tbody id="stkB"></tbody></table></div>
   </div>
-  <div id="crd" class="tab"><div class="card"><h2>Kredi Kliyan</h2><table><thead><tr><th>Kliyan</th><th>Rete</th><th></th></tr></thead><tbody id="crdB"></tbody></table></div></div>
+  <div id="crd" class="tab">
+    <div class="card"><h2>Kredi Kliyan</h2><table><thead><tr><th>Kliyan</th><th>Rete</th><th>Aksyon</th></tr></thead><tbody id="crdB"></tbody></table></div>
+    <div class="card"><h2>Fich Kliyan Regilye (Mèt / Kontraktè)</h2><table><thead><tr><th>Non</th><th>Telefòn</th><th>Total Achte</th></tr></thead><tbody id="cliB"></tbody></table></div>
+  </div>
   <div id="exp" class="tab">
     <div class="card"><h2>Nouvo Depans</h2><div class="grid"><div><label>Rezon</label><input type="text" id="eD" /></div><div><label>Montan</label><input type="number" id="eA" /></div></div><button class="btn btn-w" onclick="addE()">Ajoute</button></div>
     <div class="card"><h2>Depans (<span id="tExp">0</span>)</h2><table><tbody id="expB"></tbody></table></div>
@@ -107,22 +117,26 @@
   </div>
 </div>
 <script>
-  let st = JSON.parse(localStorage.getItem('bp_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 0000-0000', c: 'HTG' };
-  let pr = JSON.parse(localStorage.getItem('bp_pr')) || [
-    { id: 1, n: 'Siman Gri 42.5kg', c: 'Konstriksyon', cost: 1150, price: 1350, q: 40 },
-    { id: 2, n: 'Fè 1/2 pous (30 pye)', c: 'Konstriksyon', cost: 800, price: 950, q: 25 },
-    { id: 3, n: 'Tiyo PVC 1/2 pous', c: 'Plonbri', cost: 240, price: 325, q: 18 },
-    { id: 4, n: 'Fil Elektrik #12', c: 'Elektrisite', cost: 4100, price: 4800, q: 4 }
+  let st = JSON.parse(localStorage.getItem('bp2_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 4240-2215', c: 'HTG' };
+  let pr = JSON.parse(localStorage.getItem('bp2_pr')) || [
+    { id: 1, n: 'Siman Gri 42.5kg', c: 'Konstriksyon', u: 'Sak', cost: 1150, price: 1350, q: 40 },
+    { id: 2, n: 'Fè 1/2 pous (30 pye)', c: 'Konstriksyon', u: 'Inite', cost: 800, price: 950, q: 25 },
+    { id: 3, n: 'Tiyo PVC 1/2 pous', c: 'Plonbri', u: 'Inite', cost: 240, price: 325, q: 18 },
+    { id: 4, n: 'Fil Elektrik #12', c: 'Elektrisite', u: 'Pye', cost: 35, price: 50, q: 300 }
   ];
-  let sl = JSON.parse(localStorage.getItem('bp_sl')) || [];
-  let ex = JSON.parse(localStorage.getItem('bp_ex')) || [];
+  let sl = JSON.parse(localStorage.getItem('bp2_sl')) || [];
+  let dv = JSON.parse(localStorage.getItem('bp2_dv')) || [];
+  let ex = JSON.parse(localStorage.getItem('bp2_ex')) || [];
+  let cl = JSON.parse(localStorage.getItem('bp2_cl')) || [];
   let ct = [];
 
   function sv() {
-    localStorage.setItem('bp_st', JSON.stringify(st));
-    localStorage.setItem('bp_pr', JSON.stringify(pr));
-    localStorage.setItem('bp_sl', JSON.stringify(sl));
-    localStorage.setItem('bp_ex', JSON.stringify(ex));
+    localStorage.setItem('bp2_st', JSON.stringify(st));
+    localStorage.setItem('bp2_pr', JSON.stringify(pr));
+    localStorage.setItem('bp2_sl', JSON.stringify(sl));
+    localStorage.setItem('bp2_dv', JSON.stringify(dv));
+    localStorage.setItem('bp2_ex', JSON.stringify(ex));
+    localStorage.setItem('bp2_cl', JSON.stringify(cl));
   }
 
   function go(id, b) {
@@ -140,11 +154,11 @@
   }
 
   function saveP() {
-    const n = document.getElementById('pN').value.trim(), c = document.getElementById('pC').value;
+    const n = document.getElementById('pN').value.trim(), c = document.getElementById('pC').value, u = document.getElementById('pU').value;
     const cost = +document.getElementById('pCost').value || 0, price = +document.getElementById('pPrice').value, q = +document.getElementById('pQ').value;
     if (!n || !price || !q) return alert('Ranpli tout chan yo');
     let f = pr.find(x => x.n.toLowerCase() === n.toLowerCase());
-    if (f) { f.c = c; f.cost = cost; f.price = price; f.q += q; } else pr.push({ id: Date.now(), n, c, cost, price, q });
+    if (f) { f.c = c; f.u = u; f.cost = cost; f.price = price; f.q += q; } else pr.push({ id: Date.now(), n, c, u, cost, price, q });
     ['pN','pCost','pPrice','pQ'].forEach(i => document.getElementById(i).value = '');
     sv(); ui(); alert('Pwodwi sove!');
   }
@@ -154,7 +168,7 @@
     const p = pr.find(x => x.id === id);
     if (!p || q <= 0 || q > p.q) return alert('Stock ensifizan');
     let f = ct.find(x => x.id === id);
-    if (f) { if (f.q + q > p.q) return alert('Stock ensifizan'); f.q += q; } else ct.push({ id: p.id, n: p.n, cost: p.cost, price: p.price, q });
+    if (f) { if (f.q + q > p.q) return alert('Stock ensifizan'); f.q += q; } else ct.push({ id: p.id, n: p.n, u: p.u || 'Inite', cost: p.cost, price: p.price, q });
     renC();
   }
 
@@ -162,28 +176,63 @@
     const sec = document.getElementById('cSec'), tb = document.getElementById('cBody');
     if (!ct.length) { sec.style.display = 'none'; return; }
     sec.style.display = 'block'; tb.innerHTML = ''; let sub = 0;
-    ct.forEach((i, x) => { sub += i.price * i.q; tb.innerHTML += `<tr><td>${i.n}</td><td>${i.q}</td><td>${i.price*i.q}</td><td><button class="btn btn-d" onclick="ct.splice(${x},1);renC()">X</button></td></tr>`; });
+    ct.forEach((i, x) => { let t = Math.round(i.price * i.q); sub += t; tb.innerHTML += `<tr><td>${i.n}</td><td>${i.q} ${i.u}</td><td>${t}</td><td><button class="btn btn-d" onclick="ct.splice(${x},1);renC()">X</button></td></tr>`; });
     const tot = Math.max(0, sub - (+document.getElementById('sDisc').value||0) + (+document.getElementById('sDel').value||0));
     document.getElementById('cTot').innerText = tot.toLocaleString();
   }
 
+  function fillPhone() {
+    const name = document.getElementById('cName').value.trim().toLowerCase();
+    const f = cl.find(x => x.n.toLowerCase() === name);
+    if (f && f.p) document.getElementById('cPhone').value = f.p;
+  }
+
   function togC() { document.getElementById('advB').style.display = document.getElementById('pMeth').value === 'Kredi' ? 'block' : 'none'; }
 
-  function doneS() {
+  function waSend(phone, text) {
+    let clean = (phone || '').replace(/\D/g, '');
+    let url = clean ? `https://wa.me{clean}?text=${encodeURIComponent(text)}` : `https://wa.me{encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  }
+    function doneS(isDevis) {
     if (!ct.length) return;
-    const cli = document.getElementById('cName').value.trim() || 'Kliyan Kontwa', m = document.getElementById('pMeth').value;
-    if (m === 'Kredi' && cli === 'Kliyan Kontwa') return alert('Mete non kliyan an');
-    const sub = ct.reduce((s, i) => s + i.price * i.q, 0), cst = ct.reduce((s, i) => s + i.cost * i.q, 0);
+    const cli = document.getElementById('cName').value.trim() || 'Kliyan Kontwa', ph = document.getElementById('cPhone').value.trim(), m = document.getElementById('pMeth').value;
+    if (!isDevis && m === 'Kredi' && cli === 'Kliyan Kontwa') return alert('Mete non kliyan an pou kredi');
+    const sub = Math.round(ct.reduce((s, i) => s + i.price * i.q, 0)), cst = Math.round(ct.reduce((s, i) => s + i.cost * i.q, 0));
     const dsc = +document.getElementById('sDisc').value || 0, del = +document.getElementById('sDel').value || 0;
     const tot = Math.max(0, sub - dsc + del), prof = Math.max(0, (sub - dsc) - cst);
     const paid = m === 'Kredi' ? (+document.getElementById('advP').value || 0) : tot, bal = Math.max(0, tot - paid);
-    ct.forEach(i => { let p = pr.find(x => x.id === i.id); if (p) p.q -= i.q; });
-    const s = { id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), cli, m, items: [...ct], dsc, del, tot, prof, paid, bal };
-    sl.unshift(s); sv();
-    const r = document.getElementById('rec'); r.style.display = 'block';
-    r.innerHTML = `<center><b>${st.n}</b><br><small>${st.a} | ${st.p}</small><br><small>${s.d} - #${String(s.id).slice(-4)}</small></center><hr>Kliyan: <b>${s.cli}</b> (${s.m})<hr>${s.items.map(i=>`<div>${i.q}x ${i.n}: ${i.price*i.q} ${st.c}</div>`).join('')}<hr><b>TOTAL: ${s.tot} ${st.c}</b>${s.bal>0?`<br>Rete Dwe: <b>${s.bal} ${st.c}</b>`:''}<button class="btn" onclick="window.print()">Enprime / PDF</button>`;
-    ct = []; ['cName','advP','sDisc','sDel'].forEach(i => document.getElementById(i).value = i==='cName'?'':'0');
+    const recObj = { id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), cli, ph, m, items: [...ct], dsc, del, tot, prof, paid, bal };
+
+    if (isDevis) {
+      dv.unshift(recObj); sv();
+      alert('Devis (Estimasyon) sove san touche stock la!');
+    } else {
+      ct.forEach(i => { let p = pr.find(x => x.id === i.id); if (p) p.q = +(p.q - i.q).toFixed(2); });
+      sl.unshift(recObj);
+      if (cli !== 'Kliyan Kontwa') {
+        let cf = cl.find(x => x.n.toLowerCase() === cli.toLowerCase());
+        if (cf) { cf.tot += tot; if (ph) cf.p = ph; } else cl.push({ n: cli, p: ph, tot });
+      }
+      sv(); showRec(recObj, 'FAKTI');
+    }
+    ct = []; ['cName','cPhone','advP','sDisc','sDel'].forEach(i => document.getElementById(i).value = (i==='cName'||i==='cPhone')?'':'0');
     renC(); ui();
+  }
+
+  function showRec(s, title) {
+    const r = document.getElementById('rec'); r.style.display = 'block';
+    let msg = `*${st.n}* (${title} #${String(s.id).slice(-4)})\nDat: ${s.d}\nKliyan: ${s.cli}\n` + s.items.map(i=>`- ${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*TOTAL: ${s.tot} ${st.c}*` + (s.bal>0?`\nRete Dwe: ${s.bal} ${st.c}`:'');
+    r.innerHTML = `<center><b>${st.n}</b> (${title})<br><small>${st.a} | ${st.p}</small><br><small>${s.d} - #${String(s.id).slice(-4)}</small></center><hr>Kliyan: <b>${s.cli}</b> (${s.m})<hr>${s.items.map(i=>`<div>${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}</div>`).join('')}<hr><b>TOTAL: ${s.tot} ${st.c}</b>${s.bal>0?`<br>Rete Dwe: <b>${s.bal} ${st.c}</b>`:''}<div class="grid"><button class="btn" onclick="window.print()">Enprime / PDF</button><button class="btn btn-wa" onclick='waSend(${JSON.stringify(s.ph)}, ${JSON.stringify(msg)})'>Voye sou WhatsApp</button></div>`;
+  }
+
+  function convertDevis(idx) {
+    let d = dv[idx];
+    for (let i of d.items) { let p = pr.find(x => x.id === i.id); if (!p || p.q < i.q) return alert(`Stock ensifizan pou ${i.n}`); }
+    ct = [...d.items]; document.getElementById('cName').value = d.cli; document.getElementById('cPhone').value = d.ph || '';
+    document.getElementById('sDisc').value = d.dsc; document.getElementById('sDel').value = d.del;
+    dv.splice(idx, 1); sv(); renC(); ui();
+    alert('Devis la chaje nan panye a! Chwazi mòd peman an epi peze Valide Vant.');
   }
 
   function payC(id) {
@@ -203,10 +252,14 @@
     document.getElementById('stN').value = st.n; document.getElementById('stA').value = st.a; document.getElementById('stP').value = st.p; document.getElementById('stC').value = st.c;
     document.querySelectorAll('.cur').forEach(e => e.innerText = st.c);
     const sb = document.getElementById('stkB'), sp = document.getElementById('selP'); sb.innerHTML = ''; sp.innerHTML = ''; let low = 0;
-    pr.forEach((p, x) => { if (p.q <= 5) low++; sb.innerHTML += `<tr><td><b>${p.n}</b><br><small>${p.c}</small></td><td>${p.cost}/${p.price}</td><td>${p.q}</td><td><button class="btn btn-d" onclick="pr.splice(${x},1);sv();ui()">X</button></td></tr>`; if (p.q > 0) sp.innerHTML += `<option value="${p.id}">${p.n} - ${p.price} ${st.c} (${p.q})</option>`; });
+    pr.forEach((p, x) => { if (p.q <= 5) low++; sb.innerHTML += `<tr><td><b>${p.n}</b><br><small>${p.c} (${p.u||'Inite'})</small></td><td>${p.cost}/${p.price}</td><td>${p.q}</td><td><button class="btn btn-d" onclick="pr.splice(${x},1);sv();ui()">X</button></td></tr>`; if (p.q > 0) sp.innerHTML += `<option value="${p.id}">${p.n} - ${p.price} ${st.c}/${p.u||'Inite'} (${p.q})</option>`; });
+    const db = document.getElementById('devB'); db.innerHTML = '';
+    dv.forEach((d, x) => { let msg = `*DEVIS ${st.n}*\nKliyan: ${d.cli}\n` + d.items.map(i=>`- ${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*Total: ${d.tot} ${st.c}*`; db.innerHTML += `<tr><td>${d.d}</td><td>${d.cli}</td><td>${d.tot}</td><td><button class="btn btn-s btn-sm" onclick="convertDevis(${x})">Vann</button> <button class="btn btn-wa btn-sm" onclick='waSend(${JSON.stringify(d.ph)},${JSON.stringify(msg)})'>WA</button> <button class="btn btn-d" onclick="dv.splice(${x},1);sv();ui()">X</button></td></tr>`; });
     const cb = document.getElementById('crdB'), hb = document.getElementById('hisB'); cb.innerHTML = ''; hb.innerHTML = '';
     let csh = 0, crd = 0, grs = 0, prf = 0;
-    sl.forEach(s => { csh += s.paid; crd += s.bal; grs += s.tot; prf += s.prof; hb.innerHTML += `<tr><td>${s.d}</td><td>${s.cli}</td><td>${s.tot} ${st.c}</td></tr>`; if (s.bal > 0) cb.innerHTML += `<tr><td>${s.cli}</td><td>${s.bal} ${st.c}</td><td><button class="btn btn-s" style="padding:4px 8px;margin:0;width:auto" onclick="payC(${s.id})">Peye</button></td></tr>`; });
+    sl.forEach(s => { csh += s.paid; crd += s.bal; grs += s.tot; prf += s.prof; hb.innerHTML += `<tr><td>${s.d}</td><td>${s.cli}</td><td>${s.tot} ${st.c}</td></tr>`; if (s.bal > 0) { let rMsg = `Bonjou ${s.cli}, ti rapèl pou balans kredi ou nan *${st.n}* ki se *${s.bal} ${st.c}* (Fakti ${s.d}). Mèsi!`; cb.innerHTML += `<tr><td>${s.cli}</td><td>${s.bal} ${st.c}</td><td><button class="btn btn-s btn-sm" onclick="payC(${s.id})">Peye</button> <button class="btn btn-wa btn-sm" onclick='waSend(${JSON.stringify(s.ph)},${JSON.stringify(rMsg)})'>WA</button></td></tr>`; } });
+    const clb = document.getElementById('cliB'), dl = document.getElementById('cliList'); clb.innerHTML = ''; dl.innerHTML = '';
+    cl.forEach(c => { clb.innerHTML += `<tr><td><b>${c.n}</b></td><td>${c.p||'-'}</td><td>${c.tot} ${st.c}</td></tr>`; dl.innerHTML += `<option value="${c.n}">`; });
     const eb = document.getElementById('expB'); eb.innerHTML = ''; let tEx = 0;
     ex.forEach((e, x) => { tEx += e.a; eb.innerHTML += `<tr><td>${e.d}</td><td>${e.desc}</td><td>${e.a}</td><td><button class="btn btn-d" onclick="ex.splice(${x},1);sv();ui()">X</button></td></tr>`; });
     document.getElementById('sCash').innerText = `${csh} ${st.c}`; document.getElementById('sProf').innerText = `${prf} ${st.c}`; document.getElementById('sCred').innerText = `${crd} ${st.c}`; document.getElementById('sLow').innerText = low;
@@ -214,11 +267,11 @@
   }
 
   function csv() {
-    let c = "Dat,Kliyan,Mod,Total,Benefis,Rete\n" + sl.map(s=>`"${s.d}","${s.cli}","${s.m}",${s.tot},${s.prof},${s.bal}`).join('\n');
-    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([c],{type:'text/csv'})); a.download = 'Rapo.csv'; a.click();
+    let c = "Dat,Kliyan,Tel,Mod,Total,Benefis,Rete\n" + sl.map(s=>`"${s.d}","${s.cli}","${s.ph||''}","${s.m}",${s.tot},${s.prof},${s.bal}`).join('\n');
+    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([c],{type:'text/csv'})); a.download = 'Rapo_BelPoze.csv'; a.click();
   }
-  function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,ex}); alert('Kòd kreye!'); }
-  function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; ex=d.ex||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Kòd pa bon'); } }
+  function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,dv,ex,cl}); alert('Kòd kreye!'); }
+  function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; dv=d.dv||[]; ex=d.ex||[]; cl=d.cl||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Kòd pa bon'); } }
   ui();
 </script>
 </body>
