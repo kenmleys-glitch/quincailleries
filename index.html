@@ -1,264 +1,225 @@
 <!DOCTYPE html>
 <html lang="ht">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesyon Quincaillerie Pro</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 12px; color: #333; }
-        h1 { text-align: center; color: #1a5276; font-size: 20px; margin-bottom: 12px; }
-        
-        /* Rezime Finansye */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
-        .stat-box { background: #fff; padding: 10px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
-        .stat-box h3 { margin: 0; font-size: 11px; color: #666; text-transform: uppercase; }
-        .stat-box p { margin: 4px 0 0; font-size: 16px; font-weight: bold; }
-        .c-cash { color: #1e8449; }
-        .c-kredi { color: #c0392b; }
-        .c-benefis { color: #2874a6; }
-        .c-stok { color: #d35400; }
-
-        /* Kat Fòmilè ak Tablo */
-        .card { background: #fff; padding: 14px; border-radius: 8px; margin-bottom: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
-        .card h2 { margin-top: 0; font-size: 15px; color: #1a5276; border-bottom: 2px solid #1a5276; padding-bottom: 5px; }
-        
-        input, select, button { width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
-        button { background: #1a5276; color: white; border: none; font-weight: bold; cursor: pointer; }
-        .btn-green { background: #27ae60; }
-        .btn-pay { background: #2980b9; padding: 5px 8px; font-size: 11px; width: auto; }
-        .btn-del { background: #c0392b; padding: 5px 8px; font-size: 11px; width: auto; }
-
-        /* Tablo ki ka glise adwat-agoch */
-        .table-wrap { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; min-width: 420px; }
-        th, td { border: 1px solid #ddd; padding: 7px; text-align: left; }
-        th { background: #1a5276; color: white; }
-        
-        .badge-cash { background: #d4efdf; color: #1e8449; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
-        .badge-kredi { background: #fadbd8; color: #922b21; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
-        .badge-peye { background: #d6eaf8; color: #1b4f72; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quincaillerie Bel-poze</title>
+  <style>
+    :root { --p: #1e3a8a; --l: #2563eb; --bg: #f1f5f9; --c: #fff; --t: #0f172a; --m: #64748b; --d: #dc2626; --s: #16a34a; --w: #d97706; --b: #e2e8f0; }
+    * { box-sizing: border-box; font-family: system-ui, sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--t); padding-bottom: 50px; }
+    header { background: var(--p); color: #fff; padding: 12px; text-align: center; }
+    header h1 { margin: 0; font-size: 1.2rem; }
+    header p { margin: 3px 0 0; font-size: 0.78rem; }
+    nav { display: flex; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--b); position: sticky; top: 0; }
+    nav button { flex: 1; min-width: 80px; padding: 10px 4px; border: none; background: none; font-weight: 600; font-size: 0.76rem; color: var(--m); border-bottom: 3px solid transparent; }
+    nav button.active { color: var(--p); border-bottom-color: var(--p); background: #eff6ff; }
+    .box { max-width: 850px; margin: 0 auto; padding: 10px; }
+    .tab { display: none; }
+    .tab.active { display: block; }
+    .card { background: var(--c); border-radius: 8px; padding: 12px; margin-bottom: 10px; border: 1px solid var(--b); }
+    h2 { margin: 0 0 10px; font-size: 1rem; color: var(--p); }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 2px; color: var(--m); }
+    input, select, textarea { width: 100%; padding: 8px; border: 1px solid var(--b); border-radius: 6px; font-size: 0.88rem; }
+    .btn { background: var(--l); color: #fff; border: none; padding: 9px; border-radius: 6px; font-weight: 600; width: 100%; margin-top: 8px; font-size: 0.88rem; }
+    .btn-s { background: var(--s); } .btn-w { background: var(--w); }
+    .btn-d { background: var(--d); padding: 4px 8px; font-size: 0.75rem; width: auto; margin: 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--b); }
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px; }
+    .st { background: #fff; padding: 8px; border-radius: 8px; text-align: center; border: 1px solid var(--b); }
+    .st span { display: block; font-size: 0.7rem; color: var(--m); }
+    .st strong { font-size: 0.92rem; color: var(--p); }
+    .rec { background: #fffbeb; border: 1px dashed var(--w); padding: 10px; border-radius: 8px; margin-top: 10px; }
+    @media print { body * { visibility: hidden; } #rec, #rec * { visibility: visible; } #rec { position: absolute; left: 0; top: 0; width: 100%; } }
+  </style>
 </head>
 <body>
-
-    <h1>🛠️ Jesyon Quincaillerie</h1>
-
-    <!-- 4 Bwat Rezime -->
-    <div class="stats-grid">
-        <div class="stat-box">
-            <h3>💵 Lajan Cash</h3>
-            <p id="totalCash" class="c-cash">0 G</p>
-        </div>
-        <div class="stat-box">
-            <h3>⏳ Kredi Kliyan</h3>
-            <p id="totalKredi" class="c-kredi">0 G</p>
-        </div>
-        <div class="stat-box">
-            <h3>📈 Benefis Total</h3>
-            <p id="totalBenefis" class="c-benefis">0 G</p>
-        </div>
-        <div class="stat-box">
-            <h3>📦 Valè Stok Rete</h3>
-            <p id="valStok" class="c-stok">0 G</p>
-        </div>
+<header><h1 id="hName">Quincaillerie Bel-poze</h1><p id="hInfo">Thomassique, Sant | Tel: +509 0000-0000</p></header>
+<nav>
+  <button class="active" onclick="go('pos',this)">Vant</button>
+  <button onclick="go('stk',this)">Stock</button>
+  <button onclick="go('crd',this)">Kredi</button>
+  <button onclick="go('exp',this)">Depans</button>
+  <button onclick="go('rep',this)">Rapò</button>
+  <button onclick="go('set',this)">Paramèt</button>
+</nav>
+<div class="box">
+  <div id="pos" class="tab active">
+    <div class="stats">
+      <div class="st"><span>Kès</span><strong id="sCash">0</strong></div>
+      <div class="st"><span>Benefis</span><strong id="sProf" style="color:var(--s)">0</strong></div>
+      <div class="st"><span>Kredi</span><strong id="sCred" style="color:var(--w)">0</strong></div>
+      <div class="st"><span>Stock Ba</span><strong id="sLow" style="color:var(--d)">0</strong></div>
     </div>
-
-    <!-- Seksyon Acha -->
     <div class="card">
-        <h2>📥 Anrejistre Acha (Antre Stok)</h2>
-        <input type="text" id="nomPwodwi" placeholder="Non machandiz (ex: Siman, Klou 2 1/2, Tiyo 1/2)">
-        <input type="number" id="qteAchte" placeholder="Kantite ou achte">
-        <input type="number" id="priAcha" placeholder="Pri acha 1 inite (an Goud)">
-        <input type="number" id="priVant" placeholder="Pri vant 1 inite (an Goud)">
-        <button onclick="ajouteAcha()">Ajoute nan Stok</button>
-    </div>
-
-    <!-- Seksyon Vant -->
-    <div class="card">
-        <h2>📤 Anrejistre Vant (Sòti Stok)</h2>
-        <select id="selectPwodwi"></select>
-        <input type="number" id="qteVann" placeholder="Kantite wap vann">
-        <select id="tipVant" onchange="toggleKliyan()">
-            <option value="Cash">Peman Cash</option>
-            <option value="Kredi">Kredi Kliyan</option>
-        </select>
-        <input type="text" id="nomKliyan" placeholder="Non kliyan an (obligatwa pou kredi)" style="display:none;">
-        <button class="btn-green" onclick="anrejistreVant()">Valide Vant lan</button>
-    </div>
-
-    <!-- Tablo Envante (Achte, Vann, Sa k Rete, Benefis) -->
-    <div class="card">
-        <h2>📊 Envante Stok (Achte / Vann / Rete)</h2>
-        <div class="table-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pwodwi</th>
-                        <th>Achte</th>
-                        <th>Vann</th>
-                        <th>Rete</th>
-                        <th>Pri A/V</th>
-                        <th>Benefis</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="tabloStok"></tbody>
-            </table>
+      <h2>Nouvo Vant</h2>
+      <div class="grid">
+        <div><label>Pwodwi</label><select id="selP"></select></div>
+        <div><label>Kantite</label><input type="number" id="sQty" value="1" min="1" /></div>
+      </div>
+      <button class="btn" onclick="addC()">+ Ajoute nan Panye</button>
+      <div id="cSec" style="display:none;margin-top:10px;">
+        <table><thead><tr><th>Pwodwi</th><th>Kte</th><th>Total</th><th></th></tr></thead><tbody id="cBody"></tbody></table>
+        <div class="grid" style="margin-top:8px;">
+          <div><label>Rabè</label><input type="number" id="sDisc" value="0" oninput="renC()" /></div>
+          <div><label>Livrezon</label><input type="number" id="sDel" value="0" oninput="renC()" /></div>
         </div>
-    </div>
-
-    <!-- Tablo Kredi Kliyan yo -->
-    <div class="card">
-        <h2>📒 Lis Kredi Kliyan yo</h2>
-        <div class="table-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Kliyan</th>
-                        <th>Pwodwi (Qte)</th>
-                        <th>Montan</th>
-                        <th>Aksyon</th>
-                    </tr>
-                </thead>
-                <tbody id="tabloKredi"></tbody>
-            </table>
+        <p style="text-align:right;font-weight:bold;">Total: <span id="cTot">0</span> <span class="cur">HTG</span></p>
+        <div class="grid">
+          <div><label>Kliyan</label><input type="text" id="cName" placeholder="Non kliyan" /></div>
+          <div><label>Peman</label><select id="pMeth" onchange="togC()"><option>Kach</option><option>MonCash</option><option>NatCash</option><option>Kredi</option></select></div>
         </div>
+        <div id="advB" style="display:none;margin-top:8px;"><label>Avans Peye</label><input type="number" id="advP" value="0" /></div>
+        <button class="btn btn-s" onclick="doneS()">Valide & Fakti</button>
+      </div>
     </div>
-
-    <!-- Istorik Tout Vant -->
+    <div id="rec" class="rec" style="display:none;"></div>
+  </div>
+  <div id="stk" class="tab">
     <div class="card">
-        <h2>🧾 Istorik Tout Vant</h2>
-        <div class="table-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pwodwi</th>
-                        <th>Qte</th>
-                        <th>Total</th>
-                        <th>Benefis</th>
-                        <th>Eta</th>
-                    </tr>
-                </thead>
-                <tbody id="tabloVant"></tbody>
-            </table>
-        </div>
+      <h2>Ajoute Pwodwi</h2>
+      <div class="grid">
+        <div><label>Non</label><input type="text" id="pN" placeholder="Siman Gri" /></div>
+        <div><label>Kategori</label><select id="pC"><option>Konstriksyon</option><option>Plonbri</option><option>Elektrisite</option><option>Penti</option><option>Zouti</option><option>Bwa</option></select></div>
+        <div><label>Pri Acha</label><input type="number" id="pCost" placeholder="1150" /></div>
+        <div><label>Pri Vant</label><input type="number" id="pPrice" placeholder="1350" /></div>
+        <div><label>Stock</label><input type="number" id="pQ" placeholder="50" /></div>
+      </div>
+      <button class="btn" onclick="saveP()">Anregistre</button>
     </div>
-
+    <div class="card"><h2>Stock</h2><table><thead><tr><th>Pwodwi</th><th>Acha/Vant</th><th>Stock</th><th></th></tr></thead><tbody id="stkB"></tbody></table></div>
+  </div>
+  <div id="crd" class="tab"><div class="card"><h2>Kredi Kliyan</h2><table><thead><tr><th>Kliyan</th><th>Rete</th><th></th></tr></thead><tbody id="crdB"></tbody></table></div></div>
+  <div id="exp" class="tab">
+    <div class="card"><h2>Nouvo Depans</h2><div class="grid"><div><label>Rezon</label><input type="text" id="eD" /></div><div><label>Montan</label><input type="number" id="eA" /></div></div><button class="btn btn-w" onclick="addE()">Ajoute</button></div>
+    <div class="card"><h2>Depans (<span id="tExp">0</span>)</h2><table><tbody id="expB"></tbody></table></div>
+  </div>
+  <div id="rep" class="tab">
+    <div class="card"><h2>Rapò Finansye</h2><p>Vant: <strong id="rG">0</strong> | Benefis: <strong id="rP">0</strong> | Depans: <strong id="rE">0</strong></p><p>Benefis Nèt: <strong id="rN">0</strong></p><button class="btn btn-s" onclick="csv()">Telechaje Excel (CSV)</button></div>
+    <div class="card"><h2>Istorik</h2><table><tbody id="hisB"></tbody></table></div>
+  </div>
+  <div id="set" class="tab">
+    <div class="card"><h2>Paramèt</h2><label>Non</label><input id="stN" /><label>Adrès</label><input id="stA" /><label>Tel</label><input id="stP" /><label>Lajan</label><select id="stC"><option>HTG</option><option>USD</option></select><button class="btn btn-s" onclick="saveSet()">Sove</button></div>
+    <div class="card"><h2>Sovgade / Transfè</h2><button class="btn" onclick="mkBk()">Kreye Kòd</button><textarea id="bkA" rows="2" style="margin-top:6px;"></textarea><button class="btn btn-w" onclick="rsBk()">Retabli</button></div>
+  </div>
+</div>
 <script>
-    let stok = JSON.parse(localStorage.getItem('q_stok_v2')) || [];
-    let vant = JSON.parse(localStorage.getItem('q_vant_v2')) || [];
+  let st = JSON.parse(localStorage.getItem('bp_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 0000-0000', c: 'HTG' };
+  let pr = JSON.parse(localStorage.getItem('bp_pr')) || [
+    { id: 1, n: 'Siman Gri 42.5kg', c: 'Konstriksyon', cost: 1150, price: 1350, q: 40 },
+    { id: 2, n: 'Fè 1/2 pous (30 pye)', c: 'Konstriksyon', cost: 800, price: 950, q: 25 },
+    { id: 3, n: 'Tiyo PVC 1/2 pous', c: 'Plonbri', cost: 240, price: 325, q: 18 },
+    { id: 4, n: 'Fil Elektrik #12', c: 'Elektrisite', cost: 4100, price: 4800, q: 4 }
+  ];
+  let sl = JSON.parse(localStorage.getItem('bp_sl')) || [];
+  let ex = JSON.parse(localStorage.getItem('bp_ex')) || [];
+  let ct = [];
 
-    function toggleKliyan() {
-        let tip = document.getElementById('tipVant').value;
-        document.getElementById('nomKliyan').style.display = (tip === 'Kredi') ? 'block' : 'none';
-    }
+  function sv() {
+    localStorage.setItem('bp_st', JSON.stringify(st));
+    localStorage.setItem('bp_pr', JSON.stringify(pr));
+    localStorage.setItem('bp_sl', JSON.stringify(sl));
+    localStorage.setItem('bp_ex', JSON.stringify(ex));
+  }
 
-    function soveDone() {
-        localStorage.setItem('q_stok_v2', JSON.stringify(stok));
-        localStorage.setItem('q_vant_v2', JSON.stringify(vant));
-        aficheTout();
-    }
+  function go(id, b) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(x => x.classList.remove('active'));
+    document.getElementById(id).classList.add('active'); b.classList.add('active'); ui();
+  }
 
-    function ajouteAcha() {
-        let nom = document.getElementById('nomPwodwi').value.trim();
-        let qte = parseFloat(document.getElementById('qteAchte').value);
-        let pAcha = parseFloat(document.getElementById('priAcha').value);
-        let pVant = parseFloat(document.getElementById('priVant').value);
+  function saveSet() {
+    st.n = document.getElementById('stN').value || 'Quincaillerie';
+    st.a = document.getElementById('stA').value;
+    st.p = document.getElementById('stP').value;
+    st.c = document.getElementById('stC').value;
+    sv(); ui(); alert('Paramèt sove!');
+  }
 
-        if (!nom || isNaN(qte) || qte <= 0 || isNaN(pAcha) || isNaN(pVant)) {
-            alert("Tanpri ranpli tout kaz yo (Non, Kantite, Pri Acha, ak Pri Vant).");
-            return;
-        }
+  function saveP() {
+    const n = document.getElementById('pN').value.trim(), c = document.getElementById('pC').value;
+    const cost = +document.getElementById('pCost').value || 0, price = +document.getElementById('pPrice').value, q = +document.getElementById('pQ').value;
+    if (!n || !price || !q) return alert('Ranpli tout chan yo');
+    let f = pr.find(x => x.n.toLowerCase() === n.toLowerCase());
+    if (f) { f.c = c; f.cost = cost; f.price = price; f.q += q; } else pr.push({ id: Date.now(), n, c, cost, price, q });
+    ['pN','pCost','pPrice','pQ'].forEach(i => document.getElementById(i).value = '');
+    sv(); ui(); alert('Pwodwi sove!');
+  }
 
-        let egziste = stok.find(item => item.nom.toLowerCase() === nom.toLowerCase());
-        if (egziste) {
-            egziste.qteAchte += qte;
-            egziste.priAcha = pAcha;
-            egziste.priVant = pVant;
-        } else {
-            stok.push({
-                nom: nom,
-                qteAchte: qte,
-                qteVann: 0,
-                priAcha: pAcha,
-                priVant: pVant
-            });
-        }
+  function addC() {
+    const id = +document.getElementById('selP').value, q = +document.getElementById('sQty').value;
+    const p = pr.find(x => x.id === id);
+    if (!p || q <= 0 || q > p.q) return alert('Stock ensifizan');
+    let f = ct.find(x => x.id === id);
+    if (f) { if (f.q + q > p.q) return alert('Stock ensifizan'); f.q += q; } else ct.push({ id: p.id, n: p.n, cost: p.cost, price: p.price, q });
+    renC();
+  }
 
-        document.getElementById('nomPwodwi').value = '';
-        document.getElementById('qteAchte').value = '';
-        document.getElementById('priAcha').value = '';
-        document.getElementById('priVant').value = '';
-        soveDone();
-    }
+  function renC() {
+    const sec = document.getElementById('cSec'), tb = document.getElementById('cBody');
+    if (!ct.length) { sec.style.display = 'none'; return; }
+    sec.style.display = 'block'; tb.innerHTML = ''; let sub = 0;
+    ct.forEach((i, x) => { sub += i.price * i.q; tb.innerHTML += `<tr><td>${i.n}</td><td>${i.q}</td><td>${i.price*i.q}</td><td><button class="btn btn-d" onclick="ct.splice(${x},1);renC()">X</button></td></tr>`; });
+    const tot = Math.max(0, sub - (+document.getElementById('sDisc').value||0) + (+document.getElementById('sDel').value||0));
+    document.getElementById('cTot').innerText = tot.toLocaleString();
+  }
 
-    function anrejistreVant() {
-        let index = document.getElementById('selectPwodwi').value;
-        let qte = parseFloat(document.getElementById('qteVann').value);
-        let tip = document.getElementById('tipVant').value;
-        let kliyan = document.getElementById('nomKliyan').value.trim();
+  function togC() { document.getElementById('advB').style.display = document.getElementById('pMeth').value === 'Kredi' ? 'block' : 'none'; }
 
-        if (index === "" || isNaN(qte) || qte <= 0) {
-            alert("Chwazi yon pwodwi epi mete yon bon kantite.");
-            return;
-        }
+  function doneS() {
+    if (!ct.length) return;
+    const cli = document.getElementById('cName').value.trim() || 'Kliyan Kontwa', m = document.getElementById('pMeth').value;
+    if (m === 'Kredi' && cli === 'Kliyan Kontwa') return alert('Mete non kliyan an');
+    const sub = ct.reduce((s, i) => s + i.price * i.q, 0), cst = ct.reduce((s, i) => s + i.cost * i.q, 0);
+    const dsc = +document.getElementById('sDisc').value || 0, del = +document.getElementById('sDel').value || 0;
+    const tot = Math.max(0, sub - dsc + del), prof = Math.max(0, (sub - dsc) - cst);
+    const paid = m === 'Kredi' ? (+document.getElementById('advP').value || 0) : tot, bal = Math.max(0, tot - paid);
+    ct.forEach(i => { let p = pr.find(x => x.id === i.id); if (p) p.q -= i.q; });
+    const s = { id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), cli, m, items: [...ct], dsc, del, tot, prof, paid, bal };
+    sl.unshift(s); sv();
+    const r = document.getElementById('rec'); r.style.display = 'block';
+    r.innerHTML = `<center><b>${st.n}</b><br><small>${st.a} | ${st.p}</small><br><small>${s.d} - #${String(s.id).slice(-4)}</small></center><hr>Kliyan: <b>${s.cli}</b> (${s.m})<hr>${s.items.map(i=>`<div>${i.q}x ${i.n}: ${i.price*i.q} ${st.c}</div>`).join('')}<hr><b>TOTAL: ${s.tot} ${st.c}</b>${s.bal>0?`<br>Rete Dwe: <b>${s.bal} ${st.c}</b>`:''}<button class="btn" onclick="window.print()">Enprime / PDF</button>`;
+    ct = []; ['cName','advP','sDisc','sDel'].forEach(i => document.getElementById(i).value = i==='cName'?'':'0');
+    renC(); ui();
+  }
 
-        let pwodwi = stok[index];
-        let rete = pwodwi.qteAchte - pwodwi.qteVann;
+  function payC(id) {
+    let s = sl.find(x => x.id === id), v = +prompt(`Montan ${s.cli} peye (Dwe: ${s.bal}):`);
+    if (v > 0) { s.paid += v; s.bal = Math.max(0, s.tot - s.paid); sv(); ui(); }
+  }
 
-        if (qte > rete) {
-            alert("Stok la pa sifi! Ou gen sèlman " + rete + " ki rete.");
-            return;
-        }
+  function addE() {
+    const d = document.getElementById('eD').value.trim(), a = +document.getElementById('eA').value;
+    if (!d || a <= 0) return alert('Ranpli rezon ak montan');
+    ex.unshift({ id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), desc: d, a });
+    document.getElementById('eD').value = ''; document.getElementById('eA').value = ''; sv(); ui();
+  }
 
-        if (tip === "Kredi" && !kliyan) {
-            alert("Ekri non kliyan an pou kredi a.");
-            return;
-        }
+  function ui() {
+    document.getElementById('hName').innerText = st.n; document.getElementById('hInfo').innerText = `${st.a} | ${st.p}`;
+    document.getElementById('stN').value = st.n; document.getElementById('stA').value = st.a; document.getElementById('stP').value = st.p; document.getElementById('stC').value = st.c;
+    document.querySelectorAll('.cur').forEach(e => e.innerText = st.c);
+    const sb = document.getElementById('stkB'), sp = document.getElementById('selP'); sb.innerHTML = ''; sp.innerHTML = ''; let low = 0;
+    pr.forEach((p, x) => { if (p.q <= 5) low++; sb.innerHTML += `<tr><td><b>${p.n}</b><br><small>${p.c}</small></td><td>${p.cost}/${p.price}</td><td>${p.q}</td><td><button class="btn btn-d" onclick="pr.splice(${x},1);sv();ui()">X</button></td></tr>`; if (p.q > 0) sp.innerHTML += `<option value="${p.id}">${p.n} - ${p.price} ${st.c} (${p.q})</option>`; });
+    const cb = document.getElementById('crdB'), hb = document.getElementById('hisB'); cb.innerHTML = ''; hb.innerHTML = '';
+    let csh = 0, crd = 0, grs = 0, prf = 0;
+    sl.forEach(s => { csh += s.paid; crd += s.bal; grs += s.tot; prf += s.prof; hb.innerHTML += `<tr><td>${s.d}</td><td>${s.cli}</td><td>${s.tot} ${st.c}</td></tr>`; if (s.bal > 0) cb.innerHTML += `<tr><td>${s.cli}</td><td>${s.bal} ${st.c}</td><td><button class="btn btn-s" style="padding:4px 8px;margin:0;width:auto" onclick="payC(${s.id})">Peye</button></td></tr>`; });
+    const eb = document.getElementById('expB'); eb.innerHTML = ''; let tEx = 0;
+    ex.forEach((e, x) => { tEx += e.a; eb.innerHTML += `<tr><td>${e.d}</td><td>${e.desc}</td><td>${e.a}</td><td><button class="btn btn-d" onclick="ex.splice(${x},1);sv();ui()">X</button></td></tr>`; });
+    document.getElementById('sCash').innerText = `${csh} ${st.c}`; document.getElementById('sProf').innerText = `${prf} ${st.c}`; document.getElementById('sCred').innerText = `${crd} ${st.c}`; document.getElementById('sLow').innerText = low;
+    document.getElementById('tExp').innerText = tEx; document.getElementById('rG').innerText = grs; document.getElementById('rP').innerText = prf; document.getElementById('rE').innerText = tEx; document.getElementById('rN').innerText = prf - tEx;
+  }
 
-        pwodwi.qteVann += qte;
-        let total = qte * pwodwi.priVant;
-        let benefis = qte * (pwodwi.priVant - pwodwi.priAcha);
-
-        vant.unshift({
-            id: Date.now(),
-            nom: pwodwi.nom,
-            qte: qte,
-            total: total,
-            benefis: benefis,
-            tip: tip,
-            kliyan: kliyan || "Kliyan Cash"
-        });
-
-        document.getElementById('qteVann').value = '';
-        document.getElementById('nomKliyan').value = '';
-        soveDone();
-    }
-
-    function peyeKredi(idVant) {
-        let v = vant.find(item => item.id === idVant);
-        if (v && confirm("Konfime ke " + v.kliyan + " peye " + v.total + " Goud la?")) {
-            v.tip = "Peye";
-            soveDone();
-        }
-    }
-
-    function efasePwodwi(index) {
-        if (confirm("Ou vle efase pwodwi sa a nèt?")) {
-            stok.splice(index, 1);
-            soveDone();
-        }
-    }
-
-    function aficheTout() {
-        let select = document.getElementById('selectPwodwi');
-        let tabloStok = document.getElementById('tabloStok');
-        let tabloKredi = document.getElementById('tabloKredi');
-        let tabloVant = document.getElementById('tabloVant');
-
-        select.innerHTML = '<option value="">-- Chwazi pwodwi wap vann --</option>';
-        tabloStok.innerHTML = '';
-        let valeStok = 0;
-
-        stok.forEach((p, i) => {
-            let rete = p.qteAchte - p.qteVann;
+  function csv() {
+    let c = "Dat,Kliyan,Mod,Total,Benefis,Rete\n" + sl.map(s=>`"${s.d}","${s.cli}","${s.m}",${s.tot},${s.prof},${s.bal}`).join('\n');
+    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([c],{type:'text/csv'})); a.download = 'Rapo.csv'; a.click();
+  }
+  function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,ex}); alert('Kòd kreye!'); }
+  function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; ex=d.ex||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Kòd pa bon'); } }
+  ui();
+</script>
+</body>
+</html>
