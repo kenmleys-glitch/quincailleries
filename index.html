@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesyon Quincaillerie Pro</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 12px; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 20px; margin-bottom: 12px; }
+        
+        /* Rezime Finansye */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
+        .stat-box { background: #fff; padding: 10px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+        .stat-box h3 { margin: 0; font-size: 11px; color: #666; text-transform: uppercase; }
+        .stat-box p { margin: 4px 0 0; font-size: 16px; font-weight: bold; }
+        .c-cash { color: #1e8449; }
+        .c-kredi { color: #c0392b; }
+        .c-benefis { color: #2874a6; }
+        .c-stok { color: #d35400; }
+
+        /* Kat Fòmilè ak Tablo */
+        .card { background: #fff; padding: 14px; border-radius: 8px; margin-bottom: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+        .card h2 { margin-top: 0; font-size: 15px; color: #1a5276; border-bottom: 2px solid #1a5276; padding-bottom: 5px; }
+        
+        input, select, button { width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
+        button { background: #1a5276; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .btn-green { background: #27ae60; }
+        .btn-pay { background: #2980b9; padding: 5px 8px; font-size: 11px; width: auto; }
+        .btn-del { background: #c0392b; padding: 5px 8px; font-size: 11px; width: auto; }
+
+        /* Tablo ki ka glise adwat-agoch */
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; min-width: 420px; }
+        th, td { border: 1px solid #ddd; padding: 7px; text-align: left; }
+        th { background: #1a5276; color: white; }
+        
+        .badge-cash { background: #d4efdf; color: #1e8449; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+        .badge-kredi { background: #fadbd8; color: #922b21; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+        .badge-peye { background: #d6eaf8; color: #1b4f72; padding: 2px 5px; border-radius: 4px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>🛠️ Jesyon Quincaillerie</h1>
+
+    <!-- 4 Bwat Rezime -->
+    <div class="stats-grid">
+        <div class="stat-box">
+            <h3>💵 Lajan Cash</h3>
+            <p id="totalCash" class="c-cash">0 G</p>
+        </div>
+        <div class="stat-box">
+            <h3>⏳ Kredi Kliyan</h3>
+            <p id="totalKredi" class="c-kredi">0 G</p>
+        </div>
+        <div class="stat-box">
+            <h3>📈 Benefis Total</h3>
+            <p id="totalBenefis" class="c-benefis">0 G</p>
+        </div>
+        <div class="stat-box">
+            <h3>📦 Valè Stok Rete</h3>
+            <p id="valStok" class="c-stok">0 G</p>
+        </div>
+    </div>
+
+    <!-- Seksyon Acha -->
+    <div class="card">
+        <h2>📥 Anrejistre Acha (Antre Stok)</h2>
+        <input type="text" id="nomPwodwi" placeholder="Non machandiz (ex: Siman, Klou 2 1/2, Tiyo 1/2)">
+        <input type="number" id="qteAchte" placeholder="Kantite ou achte">
+        <input type="number" id="priAcha" placeholder="Pri acha 1 inite (an Goud)">
+        <input type="number" id="priVant" placeholder="Pri vant 1 inite (an Goud)">
+        <button onclick="ajouteAcha()">Ajoute nan Stok</button>
+    </div>
+
+    <!-- Seksyon Vant -->
+    <div class="card">
+        <h2>📤 Anrejistre Vant (Sòti Stok)</h2>
+        <select id="selectPwodwi"></select>
+        <input type="number" id="qteVann" placeholder="Kantite wap vann">
+        <select id="tipVant" onchange="toggleKliyan()">
+            <option value="Cash">Peman Cash</option>
+            <option value="Kredi">Kredi Kliyan</option>
+        </select>
+        <input type="text" id="nomKliyan" placeholder="Non kliyan an (obligatwa pou kredi)" style="display:none;">
+        <button class="btn-green" onclick="anrejistreVant()">Valide Vant lan</button>
+    </div>
+
+    <!-- Tablo Envante (Achte, Vann, Sa k Rete, Benefis) -->
+    <div class="card">
+        <h2>📊 Envante Stok (Achte / Vann / Rete)</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pwodwi</th>
+                        <th>Achte</th>
+                        <th>Vann</th>
+                        <th>Rete</th>
+                        <th>Pri A/V</th>
+                        <th>Benefis</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tabloStok"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tablo Kredi Kliyan yo -->
+    <div class="card">
+        <h2>📒 Lis Kredi Kliyan yo</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kliyan</th>
+                        <th>Pwodwi (Qte)</th>
+                        <th>Montan</th>
+                        <th>Aksyon</th>
+                    </tr>
+                </thead>
+                <tbody id="tabloKredi"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Istorik Tout Vant -->
+    <div class="card">
+        <h2>🧾 Istorik Tout Vant</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pwodwi</th>
+                        <th>Qte</th>
+                        <th>Total</th>
+                        <th>Benefis</th>
+                        <th>Eta</th>
+                    </tr>
+                </thead>
+                <tbody id="tabloVant"></tbody>
+            </table>
+        </div>
+    </div>
+
+<script>
+    let stok = JSON.parse(localStorage.getItem('q_stok_v2')) || [];
+    let vant = JSON.parse(localStorage.getItem('q_vant_v2')) || [];
+
+    function toggleKliyan() {
+        let tip = document.getElementById('tipVant').value;
+        document.getElementById('nomKliyan').style.display = (tip === 'Kredi') ? 'block' : 'none';
+    }
+
+    function soveDone() {
+        localStorage.setItem('q_stok_v2', JSON.stringify(stok));
+        localStorage.setItem('q_vant_v2', JSON.stringify(vant));
+        aficheTout();
+    }
+
+    function ajouteAcha() {
+        let nom = document.getElementById('nomPwodwi').value.trim();
+        let qte = parseFloat(document.getElementById('qteAchte').value);
+        let pAcha = parseFloat(document.getElementById('priAcha').value);
+        let pVant = parseFloat(document.getElementById('priVant').value);
+
+        if (!nom || isNaN(qte) || qte <= 0 || isNaN(pAcha) || isNaN(pVant)) {
+            alert("Tanpri ranpli tout kaz yo (Non, Kantite, Pri Acha, ak Pri Vant).");
+            return;
+        }
+
+        let egziste = stok.find(item => item.nom.toLowerCase() === nom.toLowerCase());
+        if (egziste) {
+            egziste.qteAchte += qte;
+            egziste.priAcha = pAcha;
+            egziste.priVant = pVant;
+        } else {
+            stok.push({
+                nom: nom,
+                qteAchte: qte,
+                qteVann: 0,
+                priAcha: pAcha,
+                priVant: pVant
+            });
+        }
+
+        document.getElementById('nomPwodwi').value = '';
+        document.getElementById('qteAchte').value = '';
+        document.getElementById('priAcha').value = '';
+        document.getElementById('priVant').value = '';
+        soveDone();
+    }
+
+    function anrejistreVant() {
+        let index = document.getElementById('selectPwodwi').value;
+        let qte = parseFloat(document.getElementById('qteVann').value);
+        let tip = document.getElementById('tipVant').value;
+        let kliyan = document.getElementById('nomKliyan').value.trim();
+
+        if (index === "" || isNaN(qte) || qte <= 0) {
+            alert("Chwazi yon pwodwi epi mete yon bon kantite.");
+            return;
+        }
+
+        let pwodwi = stok[index];
+        let rete = pwodwi.qteAchte - pwodwi.qteVann;
+
+        if (qte > rete) {
+            alert("Stok la pa sifi! Ou gen sèlman " + rete + " ki rete.");
+            return;
+        }
+
+        if (tip === "Kredi" && !kliyan) {
+            alert("Ekri non kliyan an pou kredi a.");
+            return;
+        }
+
+        pwodwi.qteVann += qte;
+        let total = qte * pwodwi.priVant;
+        let benefis = qte * (pwodwi.priVant - pwodwi.priAcha);
+
+        vant.unshift({
+            id: Date.now(),
+            nom: pwodwi.nom,
+            qte: qte,
+            total: total,
+            benefis: benefis,
+            tip: tip,
+            kliyan: kliyan || "Kliyan Cash"
+        });
+
+        document.getElementById('qteVann').value = '';
+        document.getElementById('nomKliyan').value = '';
+        soveDone();
+    }
+
+    function peyeKredi(idVant) {
+        let v = vant.find(item => item.id === idVant);
+        if (v && confirm("Konfime ke " + v.kliyan + " peye " + v.total + " Goud la?")) {
+            v.tip = "Peye";
+            soveDone();
+        }
+    }
+
+    function efasePwodwi(index) {
+        if (confirm("Ou vle efase pwodwi sa a nèt?")) {
+            stok.splice(index, 1);
+            soveDone();
+        }
+    }
+
+    function aficheTout() {
+        let select = document.getElementById('selectPwodwi');
+        let tabloStok = document.getElementById('tabloStok');
+        let tabloKredi = document.getElementById('tabloKredi');
+        let tabloVant = document.getElementById('tabloVant');
+
+        select.innerHTML = '<option value="">-- Chwazi pwodwi wap vann --</option>';
+        tabloStok.innerHTML = '';
+        let valeStok = 0;
+
+        stok.forEach((p, i) => {
+            let rete = p.qteAchte - p.qteVann;
