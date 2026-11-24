@@ -724,7 +724,13 @@
   function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,dv,rs,ex,cl,spList,supDebts,checks,logs}); alert('Kòd kreye!'); }
   function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; dv=d.dv||[]; rs=d.rs||[]; ex=d.ex||[]; cl=d.cl||[]; spList=d.spList||[]; supDebts=d.supDebts||[]; checks=d.checks||[]; logs=d.logs||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Fichye oswa kòd pa bon'); } }
   ui();
-  if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js'); }
+    (function(){
+    let c=document.createElement('canvas'); c.width=c.height=512; let g=c.getContext('2d');
+    g.fillStyle='#1e3a8a'; g.fillRect(0,0,512,512); g.fillStyle='#fff'; g.font='bold 220px sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('BP',256,275);
+    let m={name:'Quincaillerie Bel-poze Platinum',short_name:'Bel-poze Pro',start_url:location.href,display:'standalone',background_color:'#1e3a8a',theme_color:'#1e3a8a',icons:[{src:c.toDataURL('image/png'),sizes:'512x512',type:'image/png'}]};
+    document.querySelector('link[rel="manifest"]').href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/json'}));
+    if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+  })();
 </script>
 </body>
 </html>
