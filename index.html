@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quincaillerie Bel-poze Platinum</title>
+    <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1e3a8a" />
+  
   <style>
     :root { --p: #1e3a8a; --l: #2563eb; --bg: #f1f5f9; --c: #fff; --t: #0f172a; --m: #64748b; --d: #dc2626; --s: #16a34a; --w: #d97706; --wa: #15803d; --b: #e2e8f0; }
     body.dark { --bg: #0f172a; --c: #1e293b; --t: #f8fafc; --m: #94a3b8; --b: #334155; }
@@ -721,6 +724,7 @@
   function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,dv,rs,ex,cl,spList,supDebts,checks,logs}); alert('Kòd kreye!'); }
   function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; dv=d.dv||[]; rs=d.rs||[]; ex=d.ex||[]; cl=d.cl||[]; spList=d.spList||[]; supDebts=d.supDebts||[]; checks=d.checks||[]; logs=d.logs||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Fichye oswa kòd pa bon'); } }
   ui();
+  if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js'); }
 </script>
 </body>
 </html>
