@@ -3,143 +3,269 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quincaillerie Bel-poze</title>
+  <title>Quincaillerie Bel-poze Ultimate</title>
   <style>
     :root { --p: #1e3a8a; --l: #2563eb; --bg: #f1f5f9; --c: #fff; --t: #0f172a; --m: #64748b; --d: #dc2626; --s: #16a34a; --w: #d97706; --wa: #15803d; --b: #e2e8f0; }
+    body.dark { --bg: #0f172a; --c: #1e293b; --t: #f8fafc; --m: #94a3b8; --b: #334155; }
     * { box-sizing: border-box; font-family: system-ui, sans-serif; }
-    body { margin: 0; background: var(--bg); color: var(--t); padding-bottom: 50px; }
-    header { background: var(--p); color: #fff; padding: 11px; text-align: center; }
-    header h1 { margin: 0; font-size: 1.15rem; }
-    header p { margin: 2px 0 0; font-size: 0.75rem; opacity: 0.9; }
-    nav { display: grid; grid-template-columns: repeat(6, 1fr); background: #fff; border-bottom: 1px solid var(--b); position: sticky; top: 0; z-index: 10; }
-    nav button { padding: 9px 2px; border: none; background: none; font-weight: 700; font-size: 0.68rem; color: var(--m); border-bottom: 3px solid transparent; cursor: pointer; }
-    nav button.active { color: var(--p); border-bottom-color: var(--p); background: #eff6ff; }
-    .box { max-width: 850px; margin: 0 auto; padding: 10px; }
+    body { margin: 0; background: var(--bg); color: var(--t); padding-bottom: 50px; transition: 0.2s; }
+    header { background: var(--p); color: #fff; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 1.08rem; }
+    header p { margin: 2px 0 0; font-size: 0.72rem; opacity: 0.9; }
+    .h-btns button { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 5px 8px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; margin-left: 4px; }
+    nav { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--c); border-bottom: 1px solid var(--b); position: sticky; top: 0; z-index: 10; }
+    nav button { padding: 8px 1px; border: none; background: none; font-weight: 700; font-size: 0.62rem; color: var(--m); border-bottom: 3px solid transparent; cursor: pointer; }
+    nav button.active { color: var(--l); border-bottom-color: var(--l); }
+    .box { max-width: 880px; margin: 0 auto; padding: 9px; }
     .tab { display: none; }
     .tab.active { display: block; }
-    .card { background: var(--c); border-radius: 8px; padding: 11px; margin-bottom: 10px; border: 1px solid var(--b); }
-    h2 { margin: 0 0 8px; font-size: 0.98rem; color: var(--p); }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-    label { display: block; font-size: 0.72rem; font-weight: 600; margin-bottom: 2px; color: var(--m); }
-    input, select, textarea { width: 100%; padding: 7px; border: 1px solid var(--b); border-radius: 6px; font-size: 0.86rem; }
-    .btn { background: var(--l); color: #fff; border: none; padding: 9px; border-radius: 6px; font-weight: 600; width: 100%; margin-top: 8px; font-size: 0.85rem; cursor: pointer; }
+    .card { background: var(--c); border-radius: 8px; padding: 10px; margin-bottom: 9px; border: 1px solid var(--b); }
+    h2 { margin: 0 0 8px; font-size: 0.95rem; color: var(--l); display: flex; justify-content: space-between; align-items: center; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    @media (max-width: 600px) { .grid, .grid3 { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.7rem; font-weight: 600; margin-bottom: 2px; color: var(--m); }
+    input, select, textarea { width: 100%; padding: 7px; border: 1px solid var(--b); border-radius: 6px; font-size: 0.84rem; background: var(--c); color: var(--t); }
+    .btn { background: var(--l); color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 600; width: 100%; margin-top: 7px; font-size: 0.82rem; cursor: pointer; }
     .btn-s { background: var(--s); } .btn-w { background: var(--w); } .btn-wa { background: var(--wa); }
-    .btn-d { background: var(--d); padding: 4px 7px; font-size: 0.72rem; width: auto; margin: 0; }
-    .btn-sm { padding: 4px 8px; font-size: 0.72rem; width: auto; margin: 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-    th, td { text-align: left; padding: 6px 3px; border-bottom: 1px solid var(--b); }
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
-    .st { background: #fff; padding: 7px 4px; border-radius: 8px; text-align: center; border: 1px solid var(--b); }
-    .st span { display: block; font-size: 0.65rem; color: var(--m); }
-    .st strong { font-size: 0.82rem; color: var(--p); }
-    .rec { background: #fffbeb; border: 1px dashed var(--w); padding: 10px; border-radius: 8px; margin-top: 10px; }
+    .btn-d { background: var(--d); padding: 3px 6px; font-size: 0.7rem; width: auto; margin: 0; }
+    .btn-sm { padding: 4px 7px; font-size: 0.7rem; width: auto; margin: 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+    th, td { text-align: left; padding: 5px 3px; border-bottom: 1px solid var(--b); }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 9px; }
+    .st { background: var(--c); padding: 6px 3px; border-radius: 8px; text-align: center; border: 1px solid var(--b); }
+    .st span { display: block; font-size: 0.62rem; color: var(--m); }
+    .st strong { font-size: 0.8rem; color: var(--l); }
+    .rec { background: #fffbeb; color: #0f172a; border: 1px dashed var(--w); padding: 10px; border-radius: 8px; margin-top: 9px; }
+    .bar-bg { background: var(--b); height: 10px; border-radius: 5px; overflow: hidden; margin: 4px 0 8px; }
+    .bar-fill { background: var(--l); height: 100%; }
+    .late { color: var(--d); font-weight: bold; }
     @media print { body * { visibility: hidden; } #rec, #rec * { visibility: visible; } #rec { position: absolute; left: 0; top: 0; width: 100%; } }
   </style>
 </head>
 <body>
-<header><h1 id="hName">Quincaillerie Bel-poze</h1><p id="hInfo">Thomassique, Sant | +509 4240-2215</p></header>
+<header>
+  <div><h1 id="hName">Quincaillerie Bel-poze</h1><p id="hInfo">Thomassique, Sant | +509 4240-2215</p></div>
+  <div class="h-btns"><button onclick="toggleDark()">Lalin</button><button onclick="lockAdmin()">PIN</button></div>
+</header>
 <nav>
   <button class="active" onclick="go('pos',this)">Vant</button>
   <button onclick="go('stk',this)">Stock</button>
   <button onclick="go('crd',this)">Kredi</button>
+  <button onclick="go('tool',this)">Zouti</button>
   <button onclick="go('exp',this)">Depans</button>
   <button onclick="go('rep',this)">Rapò</button>
   <button onclick="go('set',this)">Paramèt</button>
 </nav>
 <div class="box">
+  <!-- ONGLET 1: VANT & DEVIS -->
   <div id="pos" class="tab active">
     <div class="stats">
-      <div class="st"><span>Kès</span><strong id="sCash">0</strong></div>
+      <div class="st"><span>Vant Jodi a</span><strong id="sToday">0</strong></div>
       <div class="st"><span>Benefis</span><strong id="sProf" style="color:var(--s)">0</strong></div>
       <div class="st"><span>Kredi</span><strong id="sCred" style="color:var(--w)">0</strong></div>
       <div class="st"><span>Stock Ba</span><strong id="sLow" style="color:var(--d)">0</strong></div>
     </div>
+
     <div class="card">
-      <h2>Nouvo Vant / Estimasyon (Devis)</h2>
+      <h2>
+        <span>Nouvo Vant / Devis</span>
+        <select id="sellerSel" style="width:auto;padding:3px 6px;font-size:0.75rem;"></select>
+      </h2>
       <div class="grid">
-        <div><label>Pwodwi (an detay oswa gros)</label><select id="selP"></select></div>
-        <div><label>Kantite / Mezi (egz: 1, 2.5, 10)</label><input type="number" step="0.01" id="sQty" value="1" min="0.01" /></div>
+        <div><label>Rechèch Rapid (Non oswa Kòd SKU)</label><input type="text" id="posSearch" placeholder="Tapez SIM01, Siman..." oninput="filterPos()" /></div>
+        <div><label>Filtre Kategori</label><select id="posCat" onchange="filterPos()"><option value="">Tout Kategori</option><option>Konstriksyon</option><option>Plonbri</option><option>Elektrisite</option><option>Penti</option><option>Zouti</option><option>Bwa</option></select></div>
+        <div><label>Chwazi Pwodwi</label><select id="selP"></select></div>
+        <div><label>Kantite / Mezi</label><input type="number" step="0.01" id="sQty" value="1" min="0.01" /></div>
       </div>
       <button class="btn" onclick="addC()">+ Ajoute nan Panye</button>
-      <div id="cSec" style="display:none;margin-top:10px;">
-        <table><thead><tr><th>Pwodwi</th><th>Kte/Inite</th><th>Total</th><th></th></tr></thead><tbody id="cBody"></tbody></table>
-        <div class="grid" style="margin-top:8px;">
+
+      <div id="cSec" style="display:none;margin-top:9px;">
+        <table><thead><tr><th>Pwodwi</th><th>Kte</th><th>Total</th><th></th></tr></thead><tbody id="cBody"></tbody></table>
+        <div class="grid" style="margin-top:7px;">
           <div><label>Rabè</label><input type="number" id="sDisc" value="0" oninput="renC()" /></div>
           <div><label>Livrezon</label><input type="number" id="sDel" value="0" oninput="renC()" /></div>
         </div>
-        <p style="text-align:right;font-weight:bold;margin:8px 0;">Total: <span id="cTot">0</span> <span class="cur">HTG</span></p>
+        <p style="text-align:right;font-weight:bold;margin:7px 0;font-size:0.95rem;">
+          Total: <span id="cTot">0</span> <span class="cur">HTG</span> <small style="color:var(--m);font-weight:normal;" id="usdEq"></small>
+        </p>
+
         <div class="grid">
           <div><label>Kliyan / Mèt</label><input type="text" id="cName" list="cliList" placeholder="Non kliyan" oninput="fillPhone()" /><datalist id="cliList"></datalist></div>
-          <div><label>Tel WhatsApp Kliyan</label><input type="tel" id="cPhone" placeholder="42402215" /></div>
-          <div><label>Mòd Peman</label><select id="pMeth" onchange="togC()"><option>Kach</option><option>MonCash</option><option>NatCash</option><option>Kredi</option></select></div>
+          <div><label>Tel WhatsApp</label><input type="tel" id="cPhone" placeholder="42402215" /></div>
+          <div><label>Mòd Peman</label><select id="pMeth" onchange="togC()"><option>Kach</option><option>MonCash</option><option>NatCash</option><option>USD (Dola)</option><option>Kredi</option></select></div>
+          <div id="cashBox"><label>Kòb Kliyan Bay (Kalkil Monnen)</label><input type="number" id="cashGiven" placeholder="0" oninput="calcChange()" /></div>
           <div id="advB" style="display:none;"><label>Avans Peye</label><input type="number" id="advP" value="0" /></div>
+          <div id="dueB" style="display:none;"><label>Dat Limit Peman Kredi</label><input type="date" id="dueDate" /></div>
         </div>
+        <p id="changeDisplay" style="text-align:right;color:var(--s);font-weight:bold;margin:5px 0;"></p>
+
         <div class="grid">
           <button class="btn btn-s" onclick="doneS(false)">Valide Vant & Fakti</button>
-          <button class="btn btn-w" onclick="doneS(true)">Sove kòm Devis (Estimasyon)</button>
+          <button class="btn btn-w" onclick="doneS(true)">Sove kòm Devis</button>
         </div>
       </div>
     </div>
+
     <div id="rec" class="rec" style="display:none;"></div>
-    <div class="card"><h2>Devis / Estimasyon an Atant</h2><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="devB"></tbody></table></div>
+    <div class="card"><h2>Devis an Atant</h2><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="devB"></tbody></table></div>
   </div>
+
+  <!-- ONGLET 2: STOCK, SKU, RETOU & PÈT -->
   <div id="stk" class="tab">
     <div class="card">
-      <h2>Ajoute Pwodwi & Inite Mezi</h2>
-      <div class="grid">
-        <div><label>Non Pwodwi</label><input type="text" id="pN" placeholder="Fil Elektrik #12" /></div>
+      <h2>Ajoute / Modifye Pwodwi</h2>
+      <div class="grid3">
+        <div><label>Kòd SKU (egz: SIM01)</label><input type="text" id="pSku" placeholder="SIM01" /></div>
+        <div><label>Non Pwodwi</label><input type="text" id="pN" placeholder="Siman Gri" /></div>
         <div><label>Kategori</label><select id="pC"><option>Konstriksyon</option><option>Plonbri</option><option>Elektrisite</option><option>Penti</option><option>Zouti</option><option>Bwa</option></select></div>
-        <div><label>Inite Mezi</label><select id="pU"><option>Inite</option><option>Pye</option><option>Liv</option><option>Mèt</option><option>Pous</option><option>Sak</option><option>Woulo</option><option>Galon</option></select></div>
+        <div><label>Inite</label><select id="pU"><option>Inite</option><option>Pye</option><option>Liv</option><option>Mèt</option><option>Pous</option><option>Sak</option><option>Woulo</option><option>Galon</option></select></div>
         <div><label>Pri Acha</label><input type="number" id="pCost" placeholder="1150" /></div>
         <div><label>Pri Vant</label><input type="number" id="pPrice" placeholder="1350" /></div>
-        <div><label>Stock Disponib</label><input type="number" step="0.01" id="pQ" placeholder="50" /></div>
+        <div><label>Kantite Stock</label><input type="number" step="0.01" id="pQ" placeholder="50" /></div>
       </div>
       <button class="btn" onclick="saveP()">Anregistre Pwodwi</button>
     </div>
-    <div class="card"><h2>Stock</h2><table><thead><tr><th>Pwodwi</th><th>Acha/Vant</th><th>Stock</th><th></th></tr></thead><tbody id="stkB"></tbody></table></div>
+
+    <div class="card">
+      <h2><span>Envantè Stock</span><button class="btn btn-wa btn-sm" onclick="shareCatalog()">Voye Katalòg Pri WhatsApp</button></h2>
+      <table><thead><tr><th>SKU / Pwodwi</th><th>Acha/Vant</th><th>Stock</th><th>Aksyon</th></tr></thead><tbody id="stkB"></tbody></table>
+    </div>
+
+    <div class="card">
+      <h2>Retou Kliyan / Pèt (Kase)</h2>
+      <div class="grid3">
+        <div><label>Pwodwi</label><select id="retP"></select></div>
+        <div><label>Kantite</label><input type="number" step="0.01" id="retQ" value="1" /></div>
+        <div><label>Tip</label><select id="retType"><option value="retou">Retou Kliyan (+Stock)</option><option value="pet">Machandiz Kase/Pèdi (-Stock)</option></select></div>
+      </div>
+      <button class="btn btn-w" onclick="handleRet()">Valide Retou / Pèt</button>
+    </div>
   </div>
+
+  <!-- ONGLET 3: KREDI & FIDÈLITE KLIYAN -->
   <div id="crd" class="tab">
-    <div class="card"><h2>Kredi Kliyan</h2><table><thead><tr><th>Kliyan</th><th>Rete</th><th>Aksyon</th></tr></thead><tbody id="crdB"></tbody></table></div>
-    <div class="card"><h2>Fich Kliyan Regilye (Mèt / Kontraktè)</h2><table><thead><tr><th>Non</th><th>Telefòn</th><th>Total Achte</th></tr></thead><tbody id="cliB"></tbody></table></div>
+    <div class="card"><h2>Kredi Kliyan (Alèt Dat Limit)</h2><table><thead><tr><th>Kliyan / Limit</th><th>Rete Dwe</th><th>Aksyon</th></tr></thead><tbody id="crdB"></tbody></table></div>
+    <div class="card"><h2>Fich Kliyan Regilye & Pwen Fidèlite</h2><table><thead><tr><th>Non / Tel</th><th>Total Achte</th><th>Pwen</th></tr></thead><tbody id="cliB"></tbody></table></div>
   </div>
+    <!-- ONGLET 4: ZOUTI (KALKILATÈ, FOUNISÈ, BLOKNÒT) -->
+  <div id="tool" class="tab">
+    <div class="card">
+      <h2>Kalkilatè Materyèl (Konstriksyon & Elektrisite)</h2>
+      <div class="grid">
+        <div><label>Tip Kalkil</label>
+          <select id="calcType" onchange="runCalc()">
+            <option value="block">Mi Blòk (Longè x Wotè an pye)</option>
+            <option value="slab">Dal Beton (Longè x Lajè an pye)</option>
+            <option value="paint">Penti (Sifas an pye kare)</option>
+            <option value="wire">Fil Elektrik (Kantite Priz/Limyè)</option>
+          </select>
+        </div>
+        <div><label>Mezi 1 (Longè an pye / Sifas / Pwen)</label><input type="number" id="cVal1" value="10" oninput="runCalc()" /></div>
+        <div id="cVal2Box"><label>Mezi 2 (Wotè oswa Lajè an pye)</label><input type="number" id="cVal2" value="8" oninput="runCalc()" /></div>
+      </div>
+      <div id="calcRes" style="margin-top:8px;padding:8px;background:var(--bg);border-radius:6px;font-size:0.82rem;font-weight:600;"></div>
+    </div>
+
+    <div class="card">
+      <h2>Founisè & Kòmand Stock Ba</h2>
+      <div class="grid3">
+        <div><label>Non Founisè</label><input type="text" id="supN" placeholder="Depo Pòtoprens" /></div>
+        <div><label>Tel WhatsApp</label><input type="tel" id="supP" placeholder="509XXXXXXXX" /></div>
+        <div><label>Espesyalite</label><input type="text" id="supS" placeholder="Siman, Fè..." /></div>
+      </div>
+      <button class="btn" onclick="addSup()">Ajoute Founisè</button>
+      <table style="margin-top:8px;"><thead><tr><th>Founisè</th><th>Espesyalite</th><th>Kòmande Stock Ba</th></tr></thead><tbody id="supB"></tbody></table>
+    </div>
+
+    <div class="card">
+      <h2>Bloknòt & Rapèl Jounalye</h2>
+      <textarea id="dailyNotes" rows="3" placeholder="Ekri kòmand espesyal kliyan oswa travay pou demen..."></textarea>
+      <button class="btn btn-s" onclick="saveNotes()">Sove Nòt yo</button>
+    </div>
+  </div>
+
+  <!-- ONGLET 5: DEPANS -->
   <div id="exp" class="tab">
-    <div class="card"><h2>Nouvo Depans</h2><div class="grid"><div><label>Rezon</label><input type="text" id="eD" /></div><div><label>Montan</label><input type="number" id="eA" /></div></div><button class="btn btn-w" onclick="addE()">Ajoute</button></div>
-    <div class="card"><h2>Depans (<span id="tExp">0</span>)</h2><table><tbody id="expB"></tbody></table></div>
+    <div class="card"><h2>Nouvo Depans</h2><div class="grid"><div><label>Rezon</label><input type="text" id="eD" placeholder="Transpò, Kouran..." /></div><div><label>Montan</label><input type="number" id="eA" /></div></div><button class="btn btn-w" onclick="addE()">Ajoute Depans</button></div>
+    <div class="card"><h2>Lis Depans (<span id="tExp">0</span>)</h2><table><tbody id="expB"></tbody></table></div>
   </div>
+
+  <!-- ONGLET 6: RAPÒ, GRAFIK & BILTEN VANDÈ -->
   <div id="rep" class="tab">
-    <div class="card"><h2>Rapò Finansye</h2><p>Vant: <strong id="rG">0</strong> | Benefis: <strong id="rP">0</strong> | Depans: <strong id="rE">0</strong></p><p>Benefis Nèt: <strong id="rN">0</strong></p><button class="btn btn-s" onclick="csv()">Telechaje Excel (CSV)</button></div>
-    <div class="card"><h2>Istorik</h2><table><tbody id="hisB"></tbody></table></div>
+    <div class="card">
+      <h2>Rezime Finansye</h2>
+      <p style="font-size:0.82rem;">Vant Total: <strong id="rG">0</strong> | Benefis Brit: <strong id="rP" style="color:var(--s)">0</strong> | Depans: <strong id="rE" style="color:var(--d)">0</strong></p>
+      <p style="font-size:0.95rem;">Benefis Nèt Reyèl: <strong id="rN" style="color:var(--l)">0</strong></p>
+      <button class="btn btn-s" onclick="csv()">Telechaje Excel (CSV)</button>
+    </div>
+
+    <div class="card"><h2>Vant pa Kategori (Grafik)</h2><div id="catChart"></div></div>
+    <div class="card"><h2>Pèfòmans Vandè yo</h2><table><thead><tr><th>Vandè</th><th>Kantite Vant</th><th>Total Kòb</th></tr></thead><tbody id="selRepB"></tbody></table></div>
+    <div class="card"><h2>Istorik Fakti (Peze WA/Enp pou re-voye)</h2><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="hisB"></tbody></table></div>
   </div>
+
+  <!-- ONGLET 7: PARAMÈT, PIN & SOVGADE -->
   <div id="set" class="tab">
-    <div class="card"><h2>Paramèt</h2><label>Non</label><input id="stN" /><label>Adrès</label><input id="stA" /><label>Tel</label><input id="stP" /><label>Lajan</label><select id="stC"><option>HTG</option><option>USD</option></select><button class="btn btn-s" onclick="saveSet()">Sove</button></div>
-    <div class="card"><h2>Sovgade / Transfè</h2><button class="btn" onclick="mkBk()">Kreye Kòd</button><textarea id="bkA" rows="2" style="margin-top:6px;"></textarea><button class="btn btn-w" onclick="rsBk()">Retabli</button></div>
+    <div class="card">
+      <h2>Paramèt Quincaillerie a</h2>
+      <div class="grid">
+        <div><label>Non Magazen</label><input id="stN" /></div>
+        <div><label>Adrès</label><input id="stA" /></div>
+        <div><label>Tel / MonCash / NatCash</label><input id="stP" /></div>
+        <div><label>Lajan Prensipal</label><select id="stC"><option>HTG</option><option>USD</option></select></div>
+        <div><label>To Dola Jounen an (1 USD = ? HTG)</label><input type="number" id="stRate" value="132" /></div>
+        <div><label>Kòd PIN Admin (4 chif, kite vid si pa genyen)</label><input type="password" maxlength="4" id="stPin" placeholder="1234" /></div>
+        <div><label>Lis Vandè (separe ak vigil)</label><input id="stSellers" placeholder="Mèt Kontwa, Anplwaye 1" /></div>
+      </div>
+      <button class="btn btn-s" onclick="saveSet()">Sove Paramèt yo</button>
+    </div>
+
+    <div class="card">
+      <h2>Sovgade & Transfè Done</h2>
+      <div class="grid">
+        <button class="btn" onclick="downloadBackupFile()">Telechaje Fichye Sovgade (.json)</button>
+        <button class="btn btn-w" onclick="mkBk()">Afiche Kòd Tèks</button>
+      </div>
+      <textarea id="bkA" rows="2" style="margin-top:6px;" placeholder="Kole kòd sovgade la a pou w retabli done w yo..."></textarea>
+      <button class="btn btn-s" onclick="rsBk()">Retabli ak Kòd sa a</button>
+    </div>
   </div>
-                              </div>
-                              <script>
-  let st = JSON.parse(localStorage.getItem('bp2_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 4240-2215', c: 'HTG' };
-  let pr = JSON.parse(localStorage.getItem('bp2_pr')) || [
-    { id: 1, n: 'Siman Gri 42.5kg', c: 'Konstriksyon', u: 'Sak', cost: 1150, price: 1350, q: 40 },
-    { id: 2, n: 'Fè 1/2 pous (30 pye)', c: 'Konstriksyon', u: 'Inite', cost: 800, price: 950, q: 25 },
-    { id: 3, n: 'Tiyo PVC 1/2 pous', c: 'Plonbri', u: 'Inite', cost: 240, price: 325, q: 18 },
-    { id: 4, n: 'Fil Elektrik #12', c: 'Elektrisite', u: 'Pye', cost: 35, price: 50, q: 300 }
+</div>
+<script>
+  let st = JSON.parse(localStorage.getItem('bpu_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 4240-2215', c: 'HTG', rate: 132, pin: '', sellers: 'Mèt Kontwa, Anplwaye 1', dark: false, notes: '' };
+  let pr = JSON.parse(localStorage.getItem('bpu_pr')) || [
+    { id: 1, sku: 'SIM01', n: 'Siman Gri 42.5kg', c: 'Konstriksyon', u: 'Sak', cost: 1150, price: 1350, q: 40 },
+    { id: 2, sku: 'FE012', n: 'Fè 1/2 pous (30 pye)', c: 'Konstriksyon', u: 'Inite', cost: 800, price: 950, q: 25 },
+    { id: 3, sku: 'PVC05', n: 'Tiyo PVC 1/2 pous', c: 'Plonbri', u: 'Inite', cost: 240, price: 325, q: 18 },
+    { id: 4, sku: 'FIL12', n: 'Fil Elektrik #12', c: 'Elektrisite', u: 'Pye', cost: 35, price: 50, q: 300 }
   ];
-  let sl = JSON.parse(localStorage.getItem('bp2_sl')) || [];
-  let dv = JSON.parse(localStorage.getItem('bp2_dv')) || [];
-  let ex = JSON.parse(localStorage.getItem('bp2_ex')) || [];
-  let cl = JSON.parse(localStorage.getItem('bp2_cl')) || [];
-  let ct = [];
+  let sl = JSON.parse(localStorage.getItem('bpu_sl')) || [];
+  let dv = JSON.parse(localStorage.getItem('bpu_dv')) || [];
+  let ex = JSON.parse(localStorage.getItem('bpu_ex')) || [];
+  let cl = JSON.parse(localStorage.getItem('bpu_cl')) || [];
+  let spList = JSON.parse(localStorage.getItem('bpu_sp')) || [];
+  let ct = [], unlocked = false;
 
   function sv() {
-    localStorage.setItem('bp2_st', JSON.stringify(st));
-    localStorage.setItem('bp2_pr', JSON.stringify(pr));
-    localStorage.setItem('bp2_sl', JSON.stringify(sl));
-    localStorage.setItem('bp2_dv', JSON.stringify(dv));
-    localStorage.setItem('bp2_ex', JSON.stringify(ex));
-    localStorage.setItem('bp2_cl', JSON.stringify(cl));
+    localStorage.setItem('bpu_st', JSON.stringify(st));
+    localStorage.setItem('bpu_pr', JSON.stringify(pr));
+    localStorage.setItem('bpu_sl', JSON.stringify(sl));
+    localStorage.setItem('bpu_dv', JSON.stringify(dv));
+    localStorage.setItem('bpu_ex', JSON.stringify(ex));
+    localStorage.setItem('bpu_cl', JSON.stringify(cl));
+    localStorage.setItem('bpu_sp', JSON.stringify(spList));
   }
 
+  function toggleDark() { st.dark = !st.dark; document.body.classList.toggle('dark', st.dark); sv(); }
+  function lockAdmin() { unlocked = false; alert('Mòd Admin fèmen!'); go('pos', document.querySelector('nav button')); }
+
   function go(id, b) {
+    if (['stk','rep','set'].includes(id) && st.pin && !unlocked) {
+      let code = prompt('Antre Kòd PIN Admin lan:');
+      if (code !== st.pin) return alert('Kòd PIN enkòrèk!');
+      unlocked = true;
+    }
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('nav button').forEach(x => x.classList.remove('active'));
     document.getElementById(id).classList.add('active'); b.classList.add('active'); ui();
@@ -150,17 +276,34 @@
     st.a = document.getElementById('stA').value;
     st.p = document.getElementById('stP').value;
     st.c = document.getElementById('stC').value;
+    st.rate = +document.getElementById('stRate').value || 132;
+    st.pin = document.getElementById('stPin').value.trim();
+    st.sellers = document.getElementById('stSellers').value || 'Mèt Kontwa';
     sv(); ui(); alert('Paramèt sove!');
   }
 
   function saveP() {
-    const n = document.getElementById('pN').value.trim(), c = document.getElementById('pC').value, u = document.getElementById('pU').value;
+    const sku = document.getElementById('pSku').value.trim().toUpperCase(), n = document.getElementById('pN').value.trim();
+    const c = document.getElementById('pC').value, u = document.getElementById('pU').value;
     const cost = +document.getElementById('pCost').value || 0, price = +document.getElementById('pPrice').value, q = +document.getElementById('pQ').value;
-    if (!n || !price || !q) return alert('Ranpli tout chan yo');
-    let f = pr.find(x => x.n.toLowerCase() === n.toLowerCase());
-    if (f) { f.c = c; f.u = u; f.cost = cost; f.price = price; f.q += q; } else pr.push({ id: Date.now(), n, c, u, cost, price, q });
-    ['pN','pCost','pPrice','pQ'].forEach(i => document.getElementById(i).value = '');
+    if (!n || !price || isNaN(q)) return alert('Ranpli tout chan yo');
+    let f = pr.find(x => x.n.toLowerCase() === n.toLowerCase() || (sku && x.sku === sku));
+    if (f) { if(sku) f.sku=sku; f.n=n; f.c=c; f.u=u; f.cost=cost; f.price=price; f.q = +(f.q + q).toFixed(2); }
+    else pr.push({ id: Date.now(), sku: sku || 'PRD', n, c, u, cost, price, q });
+    ['pSku','pN','pCost','pPrice','pQ'].forEach(i => document.getElementById(i).value = '');
     sv(); ui(); alert('Pwodwi sove!');
+  }
+
+  function quickAddStock(id) {
+    let p = pr.find(x => x.id === id), add = +prompt(`Konbyen ${p.u} ${p.n} ou ajoute nan stock?`);
+    if (add > 0) { p.q = +(p.q + add).toFixed(2); sv(); ui(); }
+  }
+
+  function filterPos() {
+    const q = document.getElementById('posSearch').value.toLowerCase(), cat = document.getElementById('posCat').value;
+    const sp = document.getElementById('selP'); sp.innerHTML = '';
+    pr.filter(p => p.q > 0 && (!cat || p.c === cat) && (p.n.toLowerCase().includes(q) || (p.sku||'').toLowerCase().includes(q)))
+      .forEach(p => sp.innerHTML += `<option value="${p.id}">[${p.sku||'PRD'}] ${p.n} - ${p.price} ${st.c}/${p.u} (${p.q})</option>`);
   }
 
   function addC() {
@@ -168,26 +311,47 @@
     const p = pr.find(x => x.id === id);
     if (!p || q <= 0 || q > p.q) return alert('Stock ensifizan');
     let f = ct.find(x => x.id === id);
-    if (f) { if (f.q + q > p.q) return alert('Stock ensifizan'); f.q += q; } else ct.push({ id: p.id, n: p.n, u: p.u || 'Inite', cost: p.cost, price: p.price, q });
+    if (f) { if (f.q + q > p.q) return alert('Stock ensifizan'); f.q = +(f.q + q).toFixed(2); }
+    else ct.push({ id: p.id, n: p.n, c: p.c, u: p.u || 'Inite', cost: p.cost, price: p.price, q });
     renC();
+  }
+
+  function getCartTotal() {
+    let sub = Math.round(ct.reduce((s, i) => s + i.price * i.q, 0));
+    return Math.max(0, sub - (+document.getElementById('sDisc').value||0) + (+document.getElementById('sDel').value||0));
   }
 
   function renC() {
     const sec = document.getElementById('cSec'), tb = document.getElementById('cBody');
     if (!ct.length) { sec.style.display = 'none'; return; }
-    sec.style.display = 'block'; tb.innerHTML = ''; let sub = 0;
-    ct.forEach((i, x) => { let t = Math.round(i.price * i.q); sub += t; tb.innerHTML += `<tr><td>${i.n}</td><td>${i.q} ${i.u}</td><td>${t}</td><td><button class="btn btn-d" onclick="ct.splice(${x},1);renC()">X</button></td></tr>`; });
-    const tot = Math.max(0, sub - (+document.getElementById('sDisc').value||0) + (+document.getElementById('sDel').value||0));
+    sec.style.display = 'block'; tb.innerHTML = '';
+    ct.forEach((i, x) => tb.innerHTML += `<tr><td>${i.n}</td><td>${i.q} ${i.u}</td><td>${Math.round(i.price*i.q)}</td><td><button class="btn btn-d" onclick="ct.splice(${x},1);renC()">X</button></td></tr>`);
+    const tot = getCartTotal();
     document.getElementById('cTot').innerText = tot.toLocaleString();
+    document.getElementById('usdEq').innerText = st.c === 'HTG' ? `(≈ ${(tot / st.rate).toFixed(2)} USD)` : `(≈ ${Math.round(tot * st.rate)} HTG)`;
+    calcChange();
   }
 
-  function fillPhone() {
-    const name = document.getElementById('cName').value.trim().toLowerCase();
-    const f = cl.find(x => x.n.toLowerCase() === name);
+  function calcChange() {
+    const tot = getCartTotal(), given = +document.getElementById('cashGiven').value || 0, m = document.getElementById('pMeth').value;
+    const el = document.getElementById('changeDisplay');
+    if (!given || m === 'Kredi') { el.innerText = ''; return; }
+    let paidHTG = (m === 'USD (Dola)' && st.c === 'HTG') ? given * st.rate : given;
+    let diff = Math.round(paidHTG - tot);
+    el.innerText = diff >= 0 ? `Monnen pou remèt: ${diff.toLocaleString()} ${st.c}` : `Manke: ${Math.abs(diff).toLocaleString()} ${st.c}`;
+  }
+    function fillPhone() {
+    const f = cl.find(x => x.n.toLowerCase() === document.getElementById('cName').value.trim().toLowerCase());
     if (f && f.p) document.getElementById('cPhone').value = f.p;
   }
 
-  function togC() { document.getElementById('advB').style.display = document.getElementById('pMeth').value === 'Kredi' ? 'block' : 'none'; }
+  function togC() {
+    let isC = document.getElementById('pMeth').value === 'Kredi';
+    document.getElementById('advB').style.display = isC ? 'block' : 'none';
+    document.getElementById('dueB').style.display = isC ? 'block' : 'none';
+    document.getElementById('cashBox').style.display = isC ? 'none' : 'block';
+    calcChange();
+  }
 
   function waSend(phone, text) {
     let clean = (phone || '').replace(/\D/g, '');
@@ -195,36 +359,38 @@
     let base = 'https://' + 'wa.me/' + clean + '?text=';
     window.open(base + encodeURIComponent(text), '_blank');
   }
-                                  function doneS(isDevis) {
+
+  function doneS(isDevis) {
     if (!ct.length) return;
-    const cli = document.getElementById('cName').value.trim() || 'Kliyan Kontwa', ph = document.getElementById('cPhone').value.trim(), m = document.getElementById('pMeth').value;
+    const cli = document.getElementById('cName').value.trim() || 'Kliyan Kontwa', ph = document.getElementById('cPhone').value.trim();
+    const m = document.getElementById('pMeth').value, seller = document.getElementById('sellerSel').value || 'Mèt Kontwa';
     if (!isDevis && m === 'Kredi' && cli === 'Kliyan Kontwa') return alert('Mete non kliyan an pou kredi');
     const sub = Math.round(ct.reduce((s, i) => s + i.price * i.q, 0)), cst = Math.round(ct.reduce((s, i) => s + i.cost * i.q, 0));
     const dsc = +document.getElementById('sDisc').value || 0, del = +document.getElementById('sDel').value || 0;
     const tot = Math.max(0, sub - dsc + del), prof = Math.max(0, (sub - dsc) - cst);
     const paid = m === 'Kredi' ? (+document.getElementById('advP').value || 0) : tot, bal = Math.max(0, tot - paid);
-    const recObj = { id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), cli, ph, m, items: [...ct], dsc, del, tot, prof, paid, bal };
+    const due = document.getElementById('dueDate').value || '';
+    const recObj = { id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), iso: new Date().toISOString().slice(0,10), cli, ph, m, seller, items: [...ct], dsc, del, tot, prof, paid, bal, due };
 
-    if (isDevis) {
-      dv.unshift(recObj); sv();
-      alert('Devis (Estimasyon) sove san touche stock la!');
-    } else {
+    if (isDevis) { dv.unshift(recObj); sv(); alert('Devis sove san touche stock la!'); }
+    else {
       ct.forEach(i => { let p = pr.find(x => x.id === i.id); if (p) p.q = +(p.q - i.q).toFixed(2); });
       sl.unshift(recObj);
       if (cli !== 'Kliyan Kontwa') {
         let cf = cl.find(x => x.n.toLowerCase() === cli.toLowerCase());
-        if (cf) { cf.tot += tot; if (ph) cf.p = ph; } else cl.push({ n: cli, p: ph, tot });
+        if (cf) { cf.tot += tot; cf.pts = (cf.pts||0) + Math.floor(tot/100); if (ph) cf.p = ph; }
+        else cl.push({ n: cli, p: ph, tot, pts: Math.floor(tot/100) });
       }
       sv(); showRec(recObj, 'FAKTI');
     }
-    ct = []; ['cName','cPhone','advP','sDisc','sDel'].forEach(i => document.getElementById(i).value = (i==='cName'||i==='cPhone')?'':'0');
-    renC(); ui();
+    ct = []; ['cName','cPhone','advP','sDisc','sDel','cashGiven','dueDate'].forEach(i => document.getElementById(i).value = ['cName','cPhone','cashGiven','dueDate'].includes(i)?'':'0');
+    document.getElementById('changeDisplay').innerText = ''; renC(); ui();
   }
 
   function showRec(s, title) {
     const r = document.getElementById('rec'); r.style.display = 'block';
-    let msg = `*${st.n}* (${title} #${String(s.id).slice(-4)})\nDat: ${s.d}\nKliyan: ${s.cli}\n` + s.items.map(i=>`- ${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*TOTAL: ${s.tot} ${st.c}*` + (s.bal>0?`\nRete Dwe: ${s.bal} ${st.c}`:'');
-    r.innerHTML = `<center><b>${st.n}</b> (${title})<br><small>${st.a} | ${st.p}</small><br><small>${s.d} - #${String(s.id).slice(-4)}</small></center><hr>Kliyan: <b>${s.cli}</b> (${s.m})<hr>${s.items.map(i=>`<div>${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}</div>`).join('')}<hr><b>TOTAL: ${s.tot} ${st.c}</b>${s.bal>0?`<br>Rete Dwe: <b>${s.bal} ${st.c}</b>`:''}<div class="grid"><button class="btn" onclick="window.print()">Enprime / PDF</button><button class="btn btn-wa" onclick='waSend(${JSON.stringify(s.ph)}, ${JSON.stringify(msg)})'>Voye sou WhatsApp</button></div>`;
+    let msg = `*${st.n}* (${title} #${String(s.id).slice(-4)})\nDat: ${s.d} | Vandè: ${s.seller}\nKliyan: ${s.cli}\n` + s.items.map(i=>`- ${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*TOTAL: ${s.tot} ${st.c}*` + (s.bal>0?`\nRete Dwe: ${s.bal} ${st.c}`:'') + `\nPeman: ${st.p}`;
+    r.innerHTML = `<center><b>${st.n}</b> (${title})<br><small>${st.a} | ${st.p}</small><br><small>${s.d} - #${String(s.id).slice(-4)} (${s.seller})</small></center><hr>Kliyan: <b>${s.cli}</b> (${s.m})<hr>${s.items.map(i=>`<div>${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}</div>`).join('')}<hr><b>TOTAL: ${s.tot} ${st.c}</b>${s.bal>0?`<br>Rete Dwe: <b>${s.bal} ${st.c}</b>`:''}<div class="grid"><button class="btn" onclick="window.print()">Enprime / PDF</button><button class="btn btn-wa" onclick='waSend(${JSON.stringify(s.ph)}, ${JSON.stringify(msg)})'>Voye sou WhatsApp</button></div>`;
   }
 
   function convertDevis(idx) {
@@ -232,8 +398,16 @@
     for (let i of d.items) { let p = pr.find(x => x.id === i.id); if (!p || p.q < i.q) return alert(`Stock ensifizan pou ${i.n}`); }
     ct = [...d.items]; document.getElementById('cName').value = d.cli; document.getElementById('cPhone').value = d.ph || '';
     document.getElementById('sDisc').value = d.dsc; document.getElementById('sDel').value = d.del;
-    dv.splice(idx, 1); sv(); renC(); ui();
-    alert('Devis la chaje nan panye a! Chwazi mòd peman an epi peze Valide Vant.');
+    dv.splice(idx, 1); sv(); renC(); ui(); alert('Devis la chaje nan panye a!');
+  }
+
+  function handleRet() {
+    const id = +document.getElementById('retP').value, q = +document.getElementById('retQ').value, type = document.getElementById('retType').value;
+    let p = pr.find(x => x.id === id);
+    if (!p || q <= 0) return alert('Kantite pa bon');
+    if (type === 'retou') { p.q = +(p.q + q).toFixed(2); alert(`${q} ${p.u} ${p.n} remèt nan stock la!`); }
+    else { if (q > p.q) return alert('Stock ensifizan'); p.q = +(p.q - q).toFixed(2); ex.unshift({ id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), desc: `Pèt/Kase: ${q} ${p.n}`, a: Math.round(p.cost * q) }); alert('Pèt anregistre!'); }
+    sv(); ui();
   }
 
   function payC(id) {
@@ -247,32 +421,109 @@
     ex.unshift({ id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), desc: d, a });
     document.getElementById('eD').value = ''; document.getElementById('eA').value = ''; sv(); ui();
   }
+    function runCalc() {
+    const t = document.getElementById('calcType').value, v1 = +document.getElementById('cVal1').value || 0, v2 = +document.getElementById('cVal2').value || 0;
+    document.getElementById('cVal2Box').style.display = (t==='block'||t==='slab') ? 'block' : 'none';
+    let out = '';
+    if (t === 'block') { let area = v1 * v2; out = `Sifas: ${area} pye² -> Anviwon ${Math.ceil(area * 1.15)} blòk + ${Math.ceil(area / 35)} sak siman.`; }
+    else if (t === 'slab') { let area = v1 * v2; out = `Dal ${area} pye² (4 pous) -> Anviwon ${Math.ceil(area / 14)} sak siman + ${Math.ceil(area / 20)} ba fè.`; }
+    else if (t === 'paint') { out = `Sifas ${v1} pye² (2 kouch) -> Anviwon ${Math.ceil(v1 / 175)} galon penti.`; }
+    else if (t === 'wire') { out = `Pou ${v1} pwen elektrik -> Prewa anviwon ${v1 * 35} pye fil #12/#14.`; }
+    document.getElementById('calcRes').innerText = out;
+  }
+
+  function addSup() {
+    const n = document.getElementById('supN').value.trim(), p = document.getElementById('supP').value.trim(), s = document.getElementById('supS').value.trim();
+    if (!n) return alert('Mete non founisè a');
+    spList.push({ n, p, s }); ['supN','supP','supS'].forEach(i => document.getElementById(i).value = ''); sv(); ui();
+  }
+
+  function orderLowStock(phone, supName) {
+    let lows = pr.filter(p => p.q <= 5);
+    if (!lows.length) return alert('Pa gen okenn pwodwi ki gen stock ba kounye a!');
+    let msg = `Bonjou ${supName}, men kòmand *${st.n}* pou pwodwi ki prèske fini yo:\n` + lows.map(p => `- ${p.n} (Rete sèlman ${p.q} ${p.u})`).join('\n');
+    waSend(phone, msg);
+  }
+
+  function shareCatalog() {
+    let msg = `*KATALÒG PRI - ${st.n}*\n` + pr.filter(p => p.q > 0).map(p => `- ${p.n}: *${p.price} ${st.c}* / ${p.u}`).join('\n') + `\nKontak: ${st.p}`;
+    waSend('', msg);
+  }
+
+  function saveNotes() { st.notes = document.getElementById('dailyNotes').value; sv(); alert('Nòt yo sove!'); }
 
   function ui() {
+    document.body.classList.toggle('dark', !!st.dark);
     document.getElementById('hName').innerText = st.n; document.getElementById('hInfo').innerText = `${st.a} | ${st.p}`;
-    document.getElementById('stN').value = st.n; document.getElementById('stA').value = st.a; document.getElementById('stP').value = st.p; document.getElementById('stC').value = st.c;
+    document.getElementById('stN').value = st.n; document.getElementById('stA').value = st.a; document.getElementById('stP').value = st.p;
+    document.getElementById('stC').value = st.c; document.getElementById('stRate').value = st.rate || 132; document.getElementById('stPin').value = st.pin || '';
+    document.getElementById('stSellers').value = st.sellers || 'Mèt Kontwa'; document.getElementById('dailyNotes').value = st.notes || '';
     document.querySelectorAll('.cur').forEach(e => e.innerText = st.c);
-    const sb = document.getElementById('stkB'), sp = document.getElementById('selP'); sb.innerHTML = ''; sp.innerHTML = ''; let low = 0;
-    pr.forEach((p, x) => { if (p.q <= 5) low++; sb.innerHTML += `<tr><td><b>${p.n}</b><br><small>${p.c} (${p.u||'Inite'})</small></td><td>${p.cost}/${p.price}</td><td>${p.q}</td><td><button class="btn btn-d" onclick="pr.splice(${x},1);sv();ui()">X</button></td></tr>`; if (p.q > 0) sp.innerHTML += `<option value="${p.id}">${p.n} - ${p.price} ${st.c}/${p.u||'Inite'} (${p.q})</option>`; });
+
+    const selS = document.getElementById('sellerSel'), curS = selS.value;
+    selS.innerHTML = (st.sellers || 'Mèt Kontwa').split(',').map(s => `<option>${s.trim()}</option>`).join('');
+    if (curS) selS.value = curS;
+
+    filterPos();
+    const sb = document.getElementById('stkB'), rp = document.getElementById('retP'); sb.innerHTML = ''; rp.innerHTML = ''; let low = 0;
+    pr.forEach((p, x) => {
+      if (p.q <= 5) low++;
+      sb.innerHTML += `<tr><td><b>[${p.sku||'PRD'}] ${p.n}</b><br><small>${p.c} (${p.u})</small></td><td>${p.cost}/${p.price}</td><td>${p.q}</td><td><button class="btn btn-s btn-sm" onclick="quickAddStock(${p.id})">+Stk</button> <button class="btn btn-d" onclick="pr.splice(${x},1);sv();ui()">X</button></td></tr>`;
+      rp.innerHTML += `<option value="${p.id}">${p.n} (${p.q} ${p.u})</option>`;
+    });
+
     const db = document.getElementById('devB'); db.innerHTML = '';
-    dv.forEach((d, x) => { let msg = `*DEVIS ${st.n}*\nKliyan: ${d.cli}\n` + d.items.map(i=>`- ${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*Total: ${d.tot} ${st.c}*`; db.innerHTML += `<tr><td>${d.d}</td><td>${d.cli}</td><td>${d.tot}</td><td><button class="btn btn-s btn-sm" onclick="convertDevis(${x})">Vann</button> <button class="btn btn-wa btn-sm" onclick='waSend(${JSON.stringify(d.ph)},${JSON.stringify(msg)})'>WA</button> <button class="btn btn-d" onclick="dv.splice(${x},1);sv();ui()">X</button></td></tr>`; });
+    dv.forEach((d, x) => {
+      let msg = `*DEVIS ${st.n}*\nKliyan: ${d.cli}\n` + d.items.map(i=>`- ${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*Total: ${d.tot} ${st.c}*`;
+      db.innerHTML += `<tr><td>${d.d}</td><td>${d.cli}</td><td>${d.tot}</td><td><button class="btn btn-s btn-sm" onclick="convertDevis(${x})">Vann</button> <button class="btn btn-wa btn-sm" onclick='waSend(${JSON.stringify(d.ph)},${JSON.stringify(msg)})'>WA</button> <button class="btn btn-d" onclick="dv.splice(${x},1);sv();ui()">X</button></td></tr>`;
+    });
+
     const cb = document.getElementById('crdB'), hb = document.getElementById('hisB'); cb.innerHTML = ''; hb.innerHTML = '';
-    let csh = 0, crd = 0, grs = 0, prf = 0;
-    sl.forEach(s => { csh += s.paid; crd += s.bal; grs += s.tot; prf += s.prof; hb.innerHTML += `<tr><td>${s.d}</td><td>${s.cli}</td><td>${s.tot} ${st.c}</td></tr>`; if (s.bal > 0) { let rMsg = `Bonjou ${s.cli}, ti rapèl pou balans kredi ou nan *${st.n}* ki se *${s.bal} ${st.c}* (Fakti ${s.d}). Mèsi!`; cb.innerHTML += `<tr><td>${s.cli}</td><td>${s.bal} ${st.c}</td><td><button class="btn btn-s btn-sm" onclick="payC(${s.id})">Peye</button> <button class="btn btn-wa btn-sm" onclick='waSend(${JSON.stringify(s.ph)},${JSON.stringify(rMsg)})'>WA</button></td></tr>`; } });
+    let todayStr = new Date().toISOString().slice(0,10), tDay = 0, crd = 0, grs = 0, prf = 0, catMap = {}, selMap = {};
+    sl.forEach((s, idx) => {
+      if (s.iso === todayStr) tDay += s.tot;
+      crd += s.bal; grs += s.tot; prf += s.prof;
+      selMap[s.seller||'Mèt'] = (selMap[s.seller||'Mèt'] || 0) + s.tot;
+      s.items.forEach(i => catMap[i.c||'Lòt'] = (catMap[i.c||'Lòt'] || 0) + Math.round(i.price * i.q));
+      hb.innerHTML += `<tr><td>${s.d}</td><td>${s.cli}</td><td>${s.tot}</td><td><button class="btn btn-sm" onclick="showRec(sl[${idx}],'FAKTI');go('pos',document.querySelector('nav button'))">Wè / WA</button></td></tr>`;
+      if (s.bal > 0) {
+        let isLate = s.due && s.due < todayStr;
+        let rMsg = `Bonjou ${s.cli}, ti rapèl pou balans kredi ou nan *${st.n}* ki se *${s.bal} ${st.c}* (Fakti ${s.d}). Mèsi!`;
+        cb.innerHTML += `<tr><td><b>${s.cli}</b><br><small class="${isLate?'late':''}">${s.due ? 'Limit: '+s.due : ''}</small></td><td>${s.bal} ${st.c}</td><td><button class="btn btn-s btn-sm" onclick="payC(${s.id})">Peye</button> <button class="btn btn-wa btn-sm" onclick='waSend(${JSON.stringify(s.ph)},${JSON.stringify(rMsg)})'>WA</button></td></tr>`;
+      }
+    });
+
     const clb = document.getElementById('cliB'), dl = document.getElementById('cliList'); clb.innerHTML = ''; dl.innerHTML = '';
-    cl.forEach(c => { clb.innerHTML += `<tr><td><b>${c.n}</b></td><td>${c.p||'-'}</td><td>${c.tot} ${st.c}</td></tr>`; dl.innerHTML += `<option value="${c.n}">`; });
+    cl.forEach(c => { clb.innerHTML += `<tr><td><b>${c.n}</b><br><small>${c.p||'-'}</small></td><td>${c.tot} ${st.c}</td><td><b>${c.pts||0} pts</b></td></tr>`; dl.innerHTML += `<option value="${c.n}">`; });
+
+    const supB = document.getElementById('supB'); supB.innerHTML = '';
+    spList.forEach((sp, x) => supB.innerHTML += `<tr><td><b>${sp.n}</b></td><td>${sp.s}</td><td><button class="btn btn-wa btn-sm" onclick='orderLowStock(${JSON.stringify(sp.p)},${JSON.stringify(sp.n)})'>Kòmande WA</button> <button class="btn btn-d" onclick="spList.splice(${x},1);sv();ui()">X</button></td></tr>`);
+
     const eb = document.getElementById('expB'); eb.innerHTML = ''; let tEx = 0;
     ex.forEach((e, x) => { tEx += e.a; eb.innerHTML += `<tr><td>${e.d}</td><td>${e.desc}</td><td>${e.a}</td><td><button class="btn btn-d" onclick="ex.splice(${x},1);sv();ui()">X</button></td></tr>`; });
-    document.getElementById('sCash').innerText = `${csh} ${st.c}`; document.getElementById('sProf').innerText = `${prf} ${st.c}`; document.getElementById('sCred').innerText = `${crd} ${st.c}`; document.getElementById('sLow').innerText = low;
-    document.getElementById('tExp').innerText = tEx; document.getElementById('rG').innerText = grs; document.getElementById('rP').innerText = prf; document.getElementById('rE').innerText = tEx; document.getElementById('rN').innerText = prf - tEx;
+
+    let chartHtml = '';
+    Object.keys(catMap).forEach(k => { let pct = grs ? Math.round((catMap[k]/grs)*100) : 0; chartHtml += `<div style="font-size:0.75rem;">${k}: <b>${catMap[k]} ${st.c}</b> (${pct}%)</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div>`; });
+    document.getElementById('catChart').innerHTML = chartHtml || '<small>Poko gen done vant.</small>';
+
+    document.getElementById('selRepB').innerHTML = Object.keys(selMap).map(k => `<tr><td><b>${k}</b></td><td>${sl.filter(x=>(x.seller||'Mèt')===k).length}</td><td>${selMap[k]} ${st.c}</td></tr>`).join('');
+    document.getElementById('sToday').innerText = `${tDay} ${st.c}`; document.getElementById('sProf').innerText = `${prf} ${st.c}`;
+    document.getElementById('sCred').innerText = `${crd} ${st.c}`; document.getElementById('sLow').innerText = low;
+    document.getElementById('tExp').innerText = tEx; document.getElementById('rG').innerText = grs;
+    document.getElementById('rP').innerText = prf; document.getElementById('rE').innerText = tEx; document.getElementById('rN').innerText = prf - tEx;
+    runCalc();
   }
 
   function csv() {
-    let c = "Dat,Kliyan,Tel,Mod,Total,Benefis,Rete\n" + sl.map(s=>`"${s.d}","${s.cli}","${s.ph||''}","${s.m}",${s.tot},${s.prof},${s.bal}`).join('\n');
-    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([c],{type:'text/csv'})); a.download = 'Rapo_BelPoze.csv'; a.click();
+    let c = "Dat,Vandè,Kliyan,Tel,Mod,Total,Benefis,Rete\n" + sl.map(s=>`"${s.d}","${s.seller||''}","${s.cli}","${s.ph||''}","${s.m}",${s.tot},${s.prof},${s.bal}`).join('\n');
+    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([c],{type:'text/csv'})); a.download = 'Rapo_BelPoze_Ultimate.csv'; a.click();
   }
-  function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,dv,ex,cl}); alert('Kòd kreye!'); }
-  function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; dv=d.dv||[]; ex=d.ex||[]; cl=d.cl||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Kòd pa bon'); } }
+  function downloadBackupFile() {
+    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({st,pr,sl,dv,ex,cl,spList})],{type:'application/json'}));
+    a.download = `Backup_BelPoze_${new Date().toISOString().slice(0,10)}.json`; a.click();
+  }
+  function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,dv,ex,cl,spList}); alert('Kòd kreye!'); }
+  function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; dv=d.dv||[]; ex=d.ex||[]; cl=d.cl||[]; spList=d.spList||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Kòd pa bon'); } }
   ui();
 </script>
 </body>
