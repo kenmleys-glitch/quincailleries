@@ -3,80 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quincaillerie Bel-poze Ultimate</title>
+  <title>Quincaillerie Bel-poze Enterprise</title>
   <style>
     :root { --p: #1e3a8a; --l: #2563eb; --bg: #f1f5f9; --c: #fff; --t: #0f172a; --m: #64748b; --d: #dc2626; --s: #16a34a; --w: #d97706; --wa: #15803d; --b: #e2e8f0; }
     body.dark { --bg: #0f172a; --c: #1e293b; --t: #f8fafc; --m: #94a3b8; --b: #334155; }
     * { box-sizing: border-box; font-family: system-ui, sans-serif; }
-    body { margin: 0; background: var(--bg); color: var(--t); padding-bottom: 50px; transition: 0.2s; }
+    body { margin: 0; background: var(--bg); color: var(--t); padding-bottom: 50px; }
     header { background: var(--p); color: #fff; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
-    header h1 { margin: 0; font-size: 1.08rem; }
-    header p { margin: 2px 0 0; font-size: 0.72rem; opacity: 0.9; }
-    .h-btns button { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 5px 8px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; margin-left: 4px; }
+    header h1 { margin: 0; font-size: 1.05rem; }
+    header p { margin: 2px 0 0; font-size: 0.7rem; opacity: 0.9; }
+    .h-btns button { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 5px 7px; border-radius: 6px; font-size: 0.72rem; cursor: pointer; margin-left: 3px; }
     nav { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--c); border-bottom: 1px solid var(--b); position: sticky; top: 0; z-index: 10; }
-    nav button { padding: 8px 1px; border: none; background: none; font-weight: 700; font-size: 0.62rem; color: var(--m); border-bottom: 3px solid transparent; cursor: pointer; }
+    nav button { padding: 8px 1px; border: none; background: none; font-weight: 700; font-size: 0.6rem; color: var(--m); border-bottom: 3px solid transparent; cursor: pointer; }
     nav button.active { color: var(--l); border-bottom-color: var(--l); }
-    .box { max-width: 880px; margin: 0 auto; padding: 9px; }
+    .box { max-width: 880px; margin: 0 auto; padding: 8px; }
     .tab { display: none; }
     .tab.active { display: block; }
-    .card { background: var(--c); border-radius: 8px; padding: 10px; margin-bottom: 9px; border: 1px solid var(--b); }
-    h2 { margin: 0 0 8px; font-size: 0.95rem; color: var(--l); display: flex; justify-content: space-between; align-items: center; }
+    .card { background: var(--c); border-radius: 8px; padding: 10px; margin-bottom: 8px; border: 1px solid var(--b); }
+    h2 { margin: 0 0 8px; font-size: 0.92rem; color: var(--l); display: flex; justify-content: space-between; align-items: center; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
     .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
     @media (max-width: 600px) { .grid, .grid3 { grid-template-columns: 1fr; } }
-    label { display: block; font-size: 0.7rem; font-weight: 600; margin-bottom: 2px; color: var(--m); }
-    input, select, textarea { width: 100%; padding: 7px; border: 1px solid var(--b); border-radius: 6px; font-size: 0.84rem; background: var(--c); color: var(--t); }
-    .btn { background: var(--l); color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 600; width: 100%; margin-top: 7px; font-size: 0.82rem; cursor: pointer; }
+    label { display: block; font-size: 0.68rem; font-weight: 600; margin-bottom: 2px; color: var(--m); }
+    input, select, textarea { width: 100%; padding: 7px; border: 1px solid var(--b); border-radius: 6px; font-size: 0.82rem; background: var(--c); color: var(--t); }
+    .btn { background: var(--l); color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 600; width: 100%; margin-top: 7px; font-size: 0.8rem; cursor: pointer; }
     .btn-s { background: var(--s); } .btn-w { background: var(--w); } .btn-wa { background: var(--wa); }
-    .btn-d { background: var(--d); padding: 3px 6px; font-size: 0.7rem; width: auto; margin: 0; }
-    .btn-sm { padding: 4px 7px; font-size: 0.7rem; width: auto; margin: 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+    .btn-d { background: var(--d); padding: 3px 6px; font-size: 0.68rem; width: auto; margin: 0; }
+    .btn-sm { padding: 4px 7px; font-size: 0.68rem; width: auto; margin: 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.74rem; }
     th, td { text-align: left; padding: 5px 3px; border-bottom: 1px solid var(--b); }
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 9px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 8px; }
     .st { background: var(--c); padding: 6px 3px; border-radius: 8px; text-align: center; border: 1px solid var(--b); }
-    .st span { display: block; font-size: 0.62rem; color: var(--m); }
-    .st strong { font-size: 0.8rem; color: var(--l); }
-    .rec { background: #fffbeb; color: #0f172a; border: 1px dashed var(--w); padding: 10px; border-radius: 8px; margin-top: 9px; }
-    .bar-bg { background: var(--b); height: 10px; border-radius: 5px; overflow: hidden; margin: 4px 0 8px; }
+    .st span { display: block; font-size: 0.6rem; color: var(--m); }
+    .st strong { font-size: 0.78rem; color: var(--l); }
+    .rec { background: #fffbeb; color: #0f172a; border: 1px dashed var(--w); padding: 10px; border-radius: 8px; margin-top: 8px; }
+    .bar-bg { background: var(--b); height: 9px; border-radius: 5px; overflow: hidden; margin: 3px 0 7px; }
     .bar-fill { background: var(--l); height: 100%; }
     .late { color: var(--d); font-weight: bold; }
-    @media print { body * { visibility: hidden; } #rec, #rec * { visibility: visible; } #rec { position: absolute; left: 0; top: 0; width: 100%; } }
+    #lockModal { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.92); z-index: 999; align-items: center; justify-content: center; padding: 16px; }
+    .modal-box { background: #fff; color: #0f172a; max-width: 380px; width: 100%; padding: 18px; border-radius: 12px; text-align: center; }
+    @media print {
+      body * { visibility: hidden; }
+      #rec, #rec * { visibility: visible; }
+      #rec { position: absolute; left: 0; top: 0; border: none; background: #fff; }
+      body.p58 #rec { width: 58mm; font-size: 11px; padding: 2mm; }
+      body.p80 #rec { width: 80mm; font-size: 12px; padding: 4mm; }
+      body.pa4 #rec { width: 100%; font-size: 14px; }
+    }
   </style>
 </head>
 <body>
+<div id="lockModal">
+  <div class="modal-box">
+    <h2 style="justify-content:center;color:#1e3a8a;">Esè Gratis la Fini (5 Vant)</h2>
+    <p style="font-size:0.8rem;color:#475569;">Pou w kontinye itilize <b>Quincaillerie Enterprise</b> san limit, antre Kòd Aktivasyon w lan.</p>
+    <p style="font-size:0.78rem;background:#f1f5f9;padding:8px;border-radius:6px;">ID Aparèy la: <b id="devIdShow"></b></p>
+    <input type="text" id="actKeyInput" placeholder="Antre Kòd Aktivasyon an..." style="text-align:center;font-weight:bold;margin:8px 0;" />
+    <button class="btn btn-s" onclick="verifyLicense()">Aktive Lojisyèl la</button>
+  </div>
+</div>
 <header>
   <div><h1 id="hName">Quincaillerie Bel-poze</h1><p id="hInfo">Thomassique, Sant | +509 4240-2215</p></div>
   <div class="h-btns"><button onclick="toggleDark()">Lalin</button><button onclick="lockAdmin()">PIN</button></div>
 </header>
 <nav>
   <button class="active" onclick="go('pos',this)">Vant</button>
-  <button onclick="go('stk',this)">Stock</button>
+  <button onclick="go('stk',this)">2 Depo</button>
   <button onclick="go('crd',this)">Kredi</button>
   <button onclick="go('tool',this)">Zouti</button>
   <button onclick="go('exp',this)">Depans</button>
   <button onclick="go('rep',this)">Rapò</button>
   <button onclick="go('set',this)">Paramèt</button>
-</nav>
-<div class="box">
+    </nav>
+    <div class="box">
   <!-- ONGLET 1: VANT & DEVIS -->
   <div id="pos" class="tab active">
     <div class="stats">
       <div class="st"><span>Vant Jodi a</span><strong id="sToday">0</strong></div>
       <div class="st"><span>Benefis</span><strong id="sProf" style="color:var(--s)">0</strong></div>
-      <div class="st"><span>Kredi</span><strong id="sCred" style="color:var(--w)">0</strong></div>
-      <div class="st"><span>Stock Ba</span><strong id="sLow" style="color:var(--d)">0</strong></div>
+      <div class="st"><span>Kredi Kliyan</span><strong id="sCred" style="color:var(--w)">0</strong></div>
+      <div class="st"><span>Alèt Stock</span><strong id="sLow" style="color:var(--d)">0</strong></div>
     </div>
 
     <div class="card">
       <h2>
         <span>Nouvo Vant / Devis</span>
-        <select id="sellerSel" style="width:auto;padding:3px 6px;font-size:0.75rem;"></select>
+        <select id="sellerSel" style="width:auto;padding:3px 6px;font-size:0.72rem;"></select>
       </h2>
       <div class="grid">
-        <div><label>Rechèch Rapid (Non oswa Kòd SKU)</label><input type="text" id="posSearch" placeholder="Tapez SIM01, Siman..." oninput="filterPos()" /></div>
-        <div><label>Filtre Kategori</label><select id="posCat" onchange="filterPos()"><option value="">Tout Kategori</option><option>Konstriksyon</option><option>Plonbri</option><option>Elektrisite</option><option>Penti</option><option>Zouti</option><option>Bwa</option></select></div>
-        <div><label>Chwazi Pwodwi</label><select id="selP"></select></div>
+        <div><label>Rechèch (Non oswa Kòd SKU)</label><input type="text" id="posSearch" placeholder="SIM01, Siman..." oninput="filterPos()" /></div>
+        <div><label>Kategori</label><select id="posCat" onchange="filterPos()"><option value="">Tout Kategori</option><option>Konstriksyon</option><option>Plonbri</option><option>Elektrisite</option><option>Penti</option><option>Zouti</option><option>Bwa</option></select></div>
+        <div><label>Pwodwi (Stock Kontwa)</label><select id="selP"></select></div>
+        <div><label>Nivo Pri</label><select id="priceTier"><option value="retail">Pri an Detay</option><option value="wholesale">Pri an Gwo (Kontraktè)</option></select></div>
         <div><label>Kantite / Mezi</label><input type="number" step="0.01" id="sQty" value="1" min="0.01" /></div>
+        <div><label>N° Seri / Garanti (Opsyonèl)</label><input type="text" id="sWarranty" placeholder="egz: SN884 - Garanti 1 an" /></div>
       </div>
       <button class="btn" onclick="addC()">+ Ajoute nan Panye</button>
 
@@ -94,14 +114,14 @@
           <div><label>Kliyan / Mèt</label><input type="text" id="cName" list="cliList" placeholder="Non kliyan" oninput="fillPhone()" /><datalist id="cliList"></datalist></div>
           <div><label>Tel WhatsApp</label><input type="tel" id="cPhone" placeholder="42402215" /></div>
           <div><label>Mòd Peman</label><select id="pMeth" onchange="togC()"><option>Kach</option><option>MonCash</option><option>NatCash</option><option>USD (Dola)</option><option>Kredi</option></select></div>
-          <div id="cashBox"><label>Kòb Kliyan Bay (Kalkil Monnen)</label><input type="number" id="cashGiven" placeholder="0" oninput="calcChange()" /></div>
+          <div id="cashBox"><label>Kòb Kliyan Bay (Monnen)</label><input type="number" id="cashGiven" placeholder="0" oninput="calcChange()" /></div>
           <div id="advB" style="display:none;"><label>Avans Peye</label><input type="number" id="advP" value="0" /></div>
-          <div id="dueB" style="display:none;"><label>Dat Limit Peman Kredi</label><input type="date" id="dueDate" /></div>
+          <div id="dueB" style="display:none;"><label>Dat Limit Kredi</label><input type="date" id="dueDate" /></div>
         </div>
         <p id="changeDisplay" style="text-align:right;color:var(--s);font-weight:bold;margin:5px 0;"></p>
 
         <div class="grid">
-          <button class="btn btn-s" onclick="doneS(false)">Valide Vant & Fakti</button>
+          <button class="btn btn-s" onclick="doneS(false)">Valide Vant & Fakti QR</button>
           <button class="btn btn-w" onclick="doneS(true)">Sove kòm Devis</button>
         </div>
       </div>
@@ -111,25 +131,37 @@
     <div class="card"><h2>Devis an Atant</h2><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="devB"></tbody></table></div>
   </div>
 
-  <!-- ONGLET 2: STOCK, SKU, RETOU & PÈT -->
+  <!-- ONGLET 2: 2 DEPO, PRI GWO/DETAY, EKSPIRASYON & RETOU -->
   <div id="stk" class="tab">
     <div class="card">
       <h2>Ajoute / Modifye Pwodwi</h2>
       <div class="grid3">
-        <div><label>Kòd SKU (egz: SIM01)</label><input type="text" id="pSku" placeholder="SIM01" /></div>
+        <div><label>Kòd SKU</label><input type="text" id="pSku" placeholder="SIM01" /></div>
         <div><label>Non Pwodwi</label><input type="text" id="pN" placeholder="Siman Gri" /></div>
         <div><label>Kategori</label><select id="pC"><option>Konstriksyon</option><option>Plonbri</option><option>Elektrisite</option><option>Penti</option><option>Zouti</option><option>Bwa</option></select></div>
         <div><label>Inite</label><select id="pU"><option>Inite</option><option>Pye</option><option>Liv</option><option>Mèt</option><option>Pous</option><option>Sak</option><option>Woulo</option><option>Galon</option></select></div>
         <div><label>Pri Acha</label><input type="number" id="pCost" placeholder="1150" /></div>
-        <div><label>Pri Vant</label><input type="number" id="pPrice" placeholder="1350" /></div>
-        <div><label>Kantite Stock</label><input type="number" step="0.01" id="pQ" placeholder="50" /></div>
+        <div><label>Pri Detay</label><input type="number" id="pPrice" placeholder="1350" /></div>
+        <div><label>Pri an Gwo</label><input type="number" id="pWhole" placeholder="1280" /></div>
+        <div><label>Stock Kontwa</label><input type="number" step="0.01" id="pQ" placeholder="20" /></div>
+        <div><label>Stock Gwo Depo</label><input type="number" step="0.01" id="pDepot" placeholder="100" /></div>
+        <div><label>Dat Ekspirasyon (Opsyonèl)</label><input type="date" id="pExp" /></div>
       </div>
       <button class="btn" onclick="saveP()">Anregistre Pwodwi</button>
     </div>
 
     <div class="card">
-      <h2><span>Envantè Stock</span><button class="btn btn-wa btn-sm" onclick="shareCatalog()">Voye Katalòg Pri WhatsApp</button></h2>
-      <table><thead><tr><th>SKU / Pwodwi</th><th>Acha/Vant</th><th>Stock</th><th>Aksyon</th></tr></thead><tbody id="stkB"></tbody></table>
+      <h2>Transfere Depo -> Kontwa</h2>
+      <div class="grid3">
+        <div><label>Pwodwi</label><select id="trP"></select></div>
+        <div><label>Kantite pou Transfere</label><input type="number" step="0.01" id="trQ" value="1" /></div>
+        <div><label>&nbsp;</label><button class="btn btn-s" style="margin-top:0;" onclick="transferStock()">Transfere nan Kontwa</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span>Envantè 2 Depo</span><button class="btn btn-wa btn-sm" onclick="shareCatalog()">Katalòg Pri WA</button></h2>
+      <table><thead><tr><th>SKU / Pwodwi</th><th>Detay/Gwo</th><th>Kontwa / Depo</th><th>Aksyon</th></tr></thead><tbody id="stkB"></tbody></table>
     </div>
 
     <div class="card">
@@ -137,16 +169,26 @@
       <div class="grid3">
         <div><label>Pwodwi</label><select id="retP"></select></div>
         <div><label>Kantite</label><input type="number" step="0.01" id="retQ" value="1" /></div>
-        <div><label>Tip</label><select id="retType"><option value="retou">Retou Kliyan (+Stock)</option><option value="pet">Machandiz Kase/Pèdi (-Stock)</option></select></div>
+        <div><label>Tip</label><select id="retType"><option value="retou">Retou Kliyan (+Kontwa)</option><option value="pet">Kase/Pèdi (-Kontwa)</option></select></div>
       </div>
       <button class="btn btn-w" onclick="handleRet()">Valide Retou / Pèt</button>
     </div>
   </div>
 
-  <!-- ONGLET 3: KREDI & FIDÈLITE KLIYAN -->
+  <!-- ONGLET 3: KREDI KLIYAN & KREDI FOUNISÈ -->
   <div id="crd" class="tab">
-    <div class="card"><h2>Kredi Kliyan (Alèt Dat Limit)</h2><table><thead><tr><th>Kliyan / Limit</th><th>Rete Dwe</th><th>Aksyon</th></tr></thead><tbody id="crdB"></tbody></table></div>
-    <div class="card"><h2>Fich Kliyan Regilye & Pwen Fidèlite</h2><table><thead><tr><th>Non / Tel</th><th>Total Achte</th><th>Pwen</th></tr></thead><tbody id="cliB"></tbody></table></div>
+    <div class="card"><h2>Kredi Kliyan Dwe Ou</h2><table><thead><tr><th>Kliyan / Limit</th><th>Rete Dwe</th><th>Aksyon</th></tr></thead><tbody id="crdB"></tbody></table></div>
+    <div class="card">
+      <h2>Kredi Ou Dwe Founisè</h2>
+      <div class="grid3">
+        <div><label>Founisè</label><input type="text" id="supDebtName" placeholder="Depo Pòtoprens" /></div>
+        <div><label>Montan Dwe</label><input type="number" id="supDebtAmt" placeholder="25000" /></div>
+        <div><label>Dat Limit</label><input type="date" id="supDebtDue" /></div>
+      </div>
+      <button class="btn btn-w" onclick="addSupDebt()">Anregistre Dèt Founisè</button>
+      <table style="margin-top:8px;"><thead><tr><th>Founisè / Limit</th><th>Rete Dwe</th><th>Aksyon</th></tr></thead><tbody id="supDebtB"></tbody></table>
+    </div>
+    <div class="card"><h2>Fich Kliyan VIP & Fidèlite</h2><table><thead><tr><th>Non / Tel</th><th>Total Achte</th><th>Pwen / WA</th></tr></thead><tbody id="cliB"></tbody></table></div>
   </div>
     <!-- ONGLET 4: ZOUTI (KALKILATÈ, FOUNISÈ, BLOKNÒT) -->
   <div id="tool" class="tab">
@@ -161,10 +203,10 @@
             <option value="wire">Fil Elektrik (Kantite Priz/Limyè)</option>
           </select>
         </div>
-        <div><label>Mezi 1 (Longè an pye / Sifas / Pwen)</label><input type="number" id="cVal1" value="10" oninput="runCalc()" /></div>
+        <div><label>Mezi 1 (Longè / Sifas / Pwen)</label><input type="number" id="cVal1" value="10" oninput="runCalc()" /></div>
         <div id="cVal2Box"><label>Mezi 2 (Wotè oswa Lajè an pye)</label><input type="number" id="cVal2" value="8" oninput="runCalc()" /></div>
       </div>
-      <div id="calcRes" style="margin-top:8px;padding:8px;background:var(--bg);border-radius:6px;font-size:0.82rem;font-weight:600;"></div>
+      <div id="calcRes" style="margin-top:8px;padding:8px;background:var(--bg);border-radius:6px;font-size:0.8rem;font-weight:600;"></div>
     </div>
 
     <div class="card">
@@ -191,21 +233,23 @@
     <div class="card"><h2>Lis Depans (<span id="tExp">0</span>)</h2><table><tbody id="expB"></tbody></table></div>
   </div>
 
-  <!-- ONGLET 6: RAPÒ, GRAFIK & BILTEN VANDÈ -->
+  <!-- ONGLET 6: RAPÒ, TOP 5 PWODWI, GRAFIK & JOUNAL AUDIT -->
   <div id="rep" class="tab">
     <div class="card">
       <h2>Rezime Finansye</h2>
-      <p style="font-size:0.82rem;">Vant Total: <strong id="rG">0</strong> | Benefis Brit: <strong id="rP" style="color:var(--s)">0</strong> | Depans: <strong id="rE" style="color:var(--d)">0</strong></p>
-      <p style="font-size:0.95rem;">Benefis Nèt Reyèl: <strong id="rN" style="color:var(--l)">0</strong></p>
+      <p style="font-size:0.8rem;">Vant Total: <strong id="rG">0</strong> | Benefis Brit: <strong id="rP" style="color:var(--s)">0</strong> | Depans: <strong id="rE" style="color:var(--d)">0</strong></p>
+      <p style="font-size:0.92rem;">Benefis Nèt Reyèl: <strong id="rN" style="color:var(--l)">0</strong></p>
       <button class="btn btn-s" onclick="csv()">Telechaje Excel (CSV)</button>
     </div>
 
+    <div class="card"><h2>Top 5 Pwodwi ki Pi Vann</h2><table><thead><tr><th>Pwodwi</th><th>Kte Vann</th><th>Total Kòb</th></tr></thead><tbody id="topProdB"></tbody></table></div>
     <div class="card"><h2>Vant pa Kategori (Grafik)</h2><div id="catChart"></div></div>
-    <div class="card"><h2>Pèfòmans Vandè yo</h2><table><thead><tr><th>Vandè</th><th>Kantite Vant</th><th>Total Kòb</th></tr></thead><tbody id="selRepB"></tbody></table></div>
-    <div class="card"><h2>Istorik Fakti (Peze WA/Enp pou re-voye)</h2><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="hisB"></tbody></table></div>
+    <div class="card"><h2>Pèfòmans Vandè yo</h2><table><thead><tr><th>Vandè</th><th>Vant</th><th>Total Kòb</th></tr></thead><tbody id="selRepB"></tbody></table></div>
+    <div class="card"><h2>Istorik Fakti (Peze Wè/WA pou re-voye)</h2><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="hisB"></tbody></table></div>
+    <div class="card"><h2>Jounal Audit & Aksyon</h2><div id="auditLogB" style="font-size:0.72rem;max-height:140px;overflow-y:auto;color:var(--m);"></div></div>
   </div>
 
-  <!-- ONGLET 7: PARAMÈT, PIN & SOVGADE -->
+  <!-- ONGLET 7: PARAMÈT, ENPRESYON, LISANS & SOVGADE -->
   <div id="set" class="tab">
     <div class="card">
       <h2>Paramèt Quincaillerie a</h2>
@@ -214,8 +258,9 @@
         <div><label>Adrès</label><input id="stA" /></div>
         <div><label>Tel / MonCash / NatCash</label><input id="stP" /></div>
         <div><label>Lajan Prensipal</label><select id="stC"><option>HTG</option><option>USD</option></select></div>
-        <div><label>To Dola Jounen an (1 USD = ? HTG)</label><input type="number" id="stRate" value="132" /></div>
-        <div><label>Kòd PIN Admin (4 chif, kite vid si pa genyen)</label><input type="password" maxlength="4" id="stPin" placeholder="1234" /></div>
+        <div><label>To Dola (1 USD = ? HTG)</label><input type="number" id="stRate" value="132" /></div>
+        <div><label>Fòma Enpresyon Fakti</label><select id="stPrint"><option value="pa4">Papye A4 / Nòmal</option><option value="p80">Tikè Tèmik 80mm</option><option value="p58">Tikè Bluetooth 58mm</option></select></div>
+        <div><label>Kòd PIN Admin (4 chif)</label><input type="password" maxlength="4" id="stPin" placeholder="1234" /></div>
         <div><label>Lis Vandè (separe ak vigil)</label><input id="stSellers" placeholder="Mèt Kontwa, Anplwaye 1" /></div>
       </div>
       <button class="btn btn-s" onclick="saveSet()">Sove Paramèt yo</button>
@@ -224,37 +269,79 @@
     <div class="card">
       <h2>Sovgade & Transfè Done</h2>
       <div class="grid">
-        <button class="btn" onclick="downloadBackupFile()">Telechaje Fichye Sovgade (.json)</button>
+        <button class="btn" onclick="downloadBackupFile()">Telechaje Fichye (.json)</button>
         <button class="btn btn-w" onclick="mkBk()">Afiche Kòd Tèks</button>
       </div>
-      <textarea id="bkA" rows="2" style="margin-top:6px;" placeholder="Kole kòd sovgade la a pou w retabli done w yo..."></textarea>
+      <textarea id="bkA" rows="2" style="margin-top:6px;" placeholder="Kole kòd sovgade la a..."></textarea>
       <button class="btn btn-s" onclick="rsBk()">Retabli ak Kòd sa a</button>
     </div>
+
+    <div class="card">
+      <h2>Jeneratè Kle Aktivasyon (Pou Ou Vann App la)</h2>
+      <p style="font-size:0.72rem;color:var(--m);">Antre ID Aparèy kliyan w lan ba ou a pou w ba li Kòd Aktivasyon pa l la.</p>
+      <div class="grid">
+        <div><label>ID Aparèy Kliyan an</label><input type="text" id="genClientId" placeholder="egz: BP-4821" /></div>
+        <div><label>Kòd Aktivasyon Jenere</label><input type="text" id="genResult" readonly placeholder="Kòd la ap parèt la a" /></div>
+      </div>
+      <button class="btn" onclick="generateClientLicense()">Kreye Kle Aktivasyon Kliyan</button>
+    </div>
   </div>
-</div>
-<script>
-  let st = JSON.parse(localStorage.getItem('bpu_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 4240-2215', c: 'HTG', rate: 132, pin: '', sellers: 'Mèt Kontwa, Anplwaye 1', dark: false, notes: '' };
-  let pr = JSON.parse(localStorage.getItem('bpu_pr')) || [
-    { id: 1, sku: 'SIM01', n: 'Siman Gri 42.5kg', c: 'Konstriksyon', u: 'Sak', cost: 1150, price: 1350, q: 40 },
-    { id: 2, sku: 'FE012', n: 'Fè 1/2 pous (30 pye)', c: 'Konstriksyon', u: 'Inite', cost: 800, price: 950, q: 25 },
-    { id: 3, sku: 'PVC05', n: 'Tiyo PVC 1/2 pous', c: 'Plonbri', u: 'Inite', cost: 240, price: 325, q: 18 },
-    { id: 4, sku: 'FIL12', n: 'Fil Elektrik #12', c: 'Elektrisite', u: 'Pye', cost: 35, price: 50, q: 300 }
+                                                 </div>
+              <script>
+  let st = JSON.parse(localStorage.getItem('bpe_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 4240-2215', c: 'HTG', rate: 132, pin: '', sellers: 'Mèt Kontwa, Anplwaye 1', dark: false, notes: '', printFmt: 'pa4' };
+  let pr = JSON.parse(localStorage.getItem('bpe_pr')) || [
+    { id: 1, sku: 'SIM01', n: 'Siman Gri 42.5kg', c: 'Konstriksyon', u: 'Sak', cost: 1150, price: 1350, whole: 1280, q: 20, depot: 100, exp: '' },
+    { id: 2, sku: 'FE012', n: 'Fè 1/2 pous (30 pye)', c: 'Konstriksyon', u: 'Inite', cost: 800, price: 950, whole: 900, q: 15, depot: 80, exp: '' },
+    { id: 3, sku: 'PVC05', n: 'Tiyo PVC 1/2 pous', c: 'Plonbri', u: 'Inite', cost: 240, price: 325, whole: 290, q: 18, depot: 50, exp: '' },
+    { id: 4, sku: 'FIL12', n: 'Fil Elektrik #12', c: 'Elektrisite', u: 'Pye', cost: 35, price: 50, whole: 42, q: 200, depot: 500, exp: '' }
   ];
-  let sl = JSON.parse(localStorage.getItem('bpu_sl')) || [];
-  let dv = JSON.parse(localStorage.getItem('bpu_dv')) || [];
-  let ex = JSON.parse(localStorage.getItem('bpu_ex')) || [];
-  let cl = JSON.parse(localStorage.getItem('bpu_cl')) || [];
-  let spList = JSON.parse(localStorage.getItem('bpu_sp')) || [];
+  let sl = JSON.parse(localStorage.getItem('bpe_sl')) || [];
+  let dv = JSON.parse(localStorage.getItem('bpe_dv')) || [];
+  let ex = JSON.parse(localStorage.getItem('bpe_ex')) || [];
+  let cl = JSON.parse(localStorage.getItem('bpe_cl')) || [];
+  let spList = JSON.parse(localStorage.getItem('bpe_sp')) || [];
+  let supDebts = JSON.parse(localStorage.getItem('bpe_sd')) || [];
+  let logs = JSON.parse(localStorage.getItem('bpe_lg')) || [];
+  let devId = localStorage.getItem('bpe_dev') || ('BP-' + Math.floor(1000 + Math.random() * 9000));
+  localStorage.setItem('bpe_dev', devId);
+  let isPro = localStorage.getItem('bpe_pro') === '1';
   let ct = [], unlocked = false;
 
   function sv() {
-    localStorage.setItem('bpu_st', JSON.stringify(st));
-    localStorage.setItem('bpu_pr', JSON.stringify(pr));
-    localStorage.setItem('bpu_sl', JSON.stringify(sl));
-    localStorage.setItem('bpu_dv', JSON.stringify(dv));
-    localStorage.setItem('bpu_ex', JSON.stringify(ex));
-    localStorage.setItem('bpu_cl', JSON.stringify(cl));
-    localStorage.setItem('bpu_sp', JSON.stringify(spList));
+    localStorage.setItem('bpe_st', JSON.stringify(st)); localStorage.setItem('bpe_pr', JSON.stringify(pr));
+    localStorage.setItem('bpe_sl', JSON.stringify(sl)); localStorage.setItem('bpe_dv', JSON.stringify(dv));
+    localStorage.setItem('bpe_ex', JSON.stringify(ex)); localStorage.setItem('bpe_cl', JSON.stringify(cl));
+    localStorage.setItem('bpe_sp', JSON.stringify(spList)); localStorage.setItem('bpe_sd', JSON.stringify(supDebts));
+    localStorage.setItem('bpe_lg', JSON.stringify(logs));
+  }
+
+  function addLog(msg) { logs.unshift(`${new Date().toLocaleTimeString('fr-HT',{hour:'2-digit',minute:'2-digit'})} - ${msg}`); if(logs.length > 50) logs.pop(); }
+
+  function makeKey(idStr) {
+    let num = parseInt(idStr.replace(/\D/g, '')) || 1234;
+    return 'PRO-' + ((num * 7 + 319) % 99999);
+  }
+
+  function checkLicense() {
+    if (!isPro && sl.length >= 5) {
+      document.getElementById('devIdShow').innerText = devId;
+      document.getElementById('lockModal').style.display = 'flex';
+    }
+  }
+
+  function verifyLicense() {
+    let inp = document.getElementById('actKeyInput').value.trim().toUpperCase();
+    if (inp === makeKey(devId) || inp === 'BELPOZE-MASTER') {
+      isPro = true; localStorage.setItem('bpe_pro', '1');
+      document.getElementById('lockModal').style.display = 'none';
+      alert('Lojisyèl la aktive avèk siksè! Mèsi.');
+    } else alert('Kòd Aktivasyon an pa valid.');
+  }
+
+  function generateClientLicense() {
+    let cid = document.getElementById('genClientId').value.trim().toUpperCase();
+    if (!cid) return alert('Mete ID Aparèy kliyan an');
+    document.getElementById('genResult').value = makeKey(cid);
   }
 
   function toggleDark() { st.dark = !st.dark; document.body.classList.toggle('dark', st.dark); sv(); }
@@ -272,51 +359,55 @@
   }
 
   function saveSet() {
-    st.n = document.getElementById('stN').value || 'Quincaillerie';
-    st.a = document.getElementById('stA').value;
-    st.p = document.getElementById('stP').value;
-    st.c = document.getElementById('stC').value;
-    st.rate = +document.getElementById('stRate').value || 132;
-    st.pin = document.getElementById('stPin').value.trim();
-    st.sellers = document.getElementById('stSellers').value || 'Mèt Kontwa';
+    st.n = document.getElementById('stN').value || 'Quincaillerie'; st.a = document.getElementById('stA').value;
+    st.p = document.getElementById('stP').value; st.c = document.getElementById('stC').value;
+    st.rate = +document.getElementById('stRate').value || 132; st.printFmt = document.getElementById('stPrint').value || 'pa4';
+    st.pin = document.getElementById('stPin').value.trim(); st.sellers = document.getElementById('stSellers').value || 'Mèt Kontwa';
     sv(); ui(); alert('Paramèt sove!');
   }
 
   function saveP() {
     const sku = document.getElementById('pSku').value.trim().toUpperCase(), n = document.getElementById('pN').value.trim();
     const c = document.getElementById('pC').value, u = document.getElementById('pU').value;
-    const cost = +document.getElementById('pCost').value || 0, price = +document.getElementById('pPrice').value, q = +document.getElementById('pQ').value;
-    if (!n || !price || isNaN(q)) return alert('Ranpli tout chan yo');
+    const cost = +document.getElementById('pCost').value || 0, price = +document.getElementById('pPrice').value;
+    const whole = +document.getElementById('pWhole').value || price, q = +document.getElementById('pQ').value || 0;
+    const depot = +document.getElementById('pDepot').value || 0, exp = document.getElementById('pExp').value || '';
+    if (!n || !price) return alert('Mete non ak pri pwodwi a');
     let f = pr.find(x => x.n.toLowerCase() === n.toLowerCase() || (sku && x.sku === sku));
-    if (f) { if(sku) f.sku=sku; f.n=n; f.c=c; f.u=u; f.cost=cost; f.price=price; f.q = +(f.q + q).toFixed(2); }
-    else pr.push({ id: Date.now(), sku: sku || 'PRD', n, c, u, cost, price, q });
-    ['pSku','pN','pCost','pPrice','pQ'].forEach(i => document.getElementById(i).value = '');
+    if (f) { if(sku) f.sku=sku; f.n=n; f.c=c; f.u=u; f.cost=cost; f.price=price; f.whole=whole; f.q=+(f.q+q).toFixed(2); f.depot=+((f.depot||0)+depot).toFixed(2); if(exp) f.exp=exp; addLog(`Mizajou stock: ${n}`); }
+    else { pr.push({ id: Date.now(), sku: sku || 'PRD', n, c, u, cost, price, whole, q, depot, exp }); addLog(`Nouvo pwodwi: ${n}`); }
+    ['pSku','pN','pCost','pPrice','pWhole','pQ','pDepot','pExp'].forEach(i => document.getElementById(i).value = '');
     sv(); ui(); alert('Pwodwi sove!');
   }
 
-  function quickAddStock(id) {
-    let p = pr.find(x => x.id === id), add = +prompt(`Konbyen ${p.u} ${p.n} ou ajoute nan stock?`);
-    if (add > 0) { p.q = +(p.q + add).toFixed(2); sv(); ui(); }
+  function transferStock() {
+    const id = +document.getElementById('trP').value, q = +document.getElementById('trQ').value;
+    let p = pr.find(x => x.id === id);
+    if (!p || q <= 0 || (p.depot || 0) < q) return alert('Stock ensifizan nan Gwo Depo a!');
+    p.depot = +(p.depot - q).toFixed(2); p.q = +(p.q + q).toFixed(2);
+    addLog(`Transfè Depo->Kontwa: ${q} ${p.u} ${p.n}`);
+    sv(); ui(); alert('Transfè fèt avèk siksè!');
   }
 
   function filterPos() {
     const q = document.getElementById('posSearch').value.toLowerCase(), cat = document.getElementById('posCat').value;
     const sp = document.getElementById('selP'); sp.innerHTML = '';
     pr.filter(p => p.q > 0 && (!cat || p.c === cat) && (p.n.toLowerCase().includes(q) || (p.sku||'').toLowerCase().includes(q)))
-      .forEach(p => sp.innerHTML += `<option value="${p.id}">[${p.sku||'PRD'}] ${p.n} - ${p.price} ${st.c}/${p.u} (${p.q})</option>`);
+      .forEach(p => sp.innerHTML += `<option value="${p.id}">[${p.sku||'PRD'}] ${p.n} - ${p.price}/${p.whole||p.price} ${st.c} (${p.q})</option>`);
   }
 
   function addC() {
     const id = +document.getElementById('selP').value, q = +document.getElementById('sQty').value;
+    const tier = document.getElementById('priceTier').value, war = document.getElementById('sWarranty').value.trim();
     const p = pr.find(x => x.id === id);
-    if (!p || q <= 0 || q > p.q) return alert('Stock ensifizan');
-    let f = ct.find(x => x.id === id);
+    if (!p || q <= 0 || q > p.q) return alert('Stock kontwa ensifizan');
+    let unitP = tier === 'wholesale' ? (p.whole || p.price) : p.price;
+    let f = ct.find(x => x.id === id && x.price === unitP && x.war === war);
     if (f) { if (f.q + q > p.q) return alert('Stock ensifizan'); f.q = +(f.q + q).toFixed(2); }
-    else ct.push({ id: p.id, n: p.n, c: p.c, u: p.u || 'Inite', cost: p.cost, price: p.price, q });
-    renC();
+    else ct.push({ id: p.id, n: p.n, c: p.c, u: p.u || 'Inite', cost: p.cost, price: unitP, q, war });
+    document.getElementById('sWarranty').value = ''; renC();
   }
-
-  function getCartTotal() {
+                  function getCartTotal() {
     let sub = Math.round(ct.reduce((s, i) => s + i.price * i.q, 0));
     return Math.max(0, sub - (+document.getElementById('sDisc').value||0) + (+document.getElementById('sDel').value||0));
   }
@@ -325,7 +416,7 @@
     const sec = document.getElementById('cSec'), tb = document.getElementById('cBody');
     if (!ct.length) { sec.style.display = 'none'; return; }
     sec.style.display = 'block'; tb.innerHTML = '';
-    ct.forEach((i, x) => tb.innerHTML += `<tr><td>${i.n}</td><td>${i.q} ${i.u}</td><td>${Math.round(i.price*i.q)}</td><td><button class="btn btn-d" onclick="ct.splice(${x},1);renC()">X</button></td></tr>`);
+    ct.forEach((i, x) => tb.innerHTML += `<tr><td>${i.n}${i.war?'<br><small>'+i.war+'</small>':''}</td><td>${i.q} ${i.u}</td><td>${Math.round(i.price*i.q)}</td><td><button class="btn btn-d" onclick="ct.splice(${x},1);renC()">X</button></td></tr>`);
     const tot = getCartTotal();
     document.getElementById('cTot').innerText = tot.toLocaleString();
     document.getElementById('usdEq').innerText = st.c === 'HTG' ? `(≈ ${(tot / st.rate).toFixed(2)} USD)` : `(≈ ${Math.round(tot * st.rate)} HTG)`;
@@ -340,7 +431,8 @@
     let diff = Math.round(paidHTG - tot);
     el.innerText = diff >= 0 ? `Monnen pou remèt: ${diff.toLocaleString()} ${st.c}` : `Manke: ${Math.abs(diff).toLocaleString()} ${st.c}`;
   }
-    function fillPhone() {
+
+  function fillPhone() {
     const f = cl.find(x => x.n.toLowerCase() === document.getElementById('cName').value.trim().toLowerCase());
     if (f && f.p) document.getElementById('cPhone').value = f.p;
   }
@@ -362,6 +454,7 @@
 
   function doneS(isDevis) {
     if (!ct.length) return;
+    if (!isDevis && !isPro && sl.length >= 5) { checkLicense(); return; }
     const cli = document.getElementById('cName').value.trim() || 'Kliyan Kontwa', ph = document.getElementById('cPhone').value.trim();
     const m = document.getElementById('pMeth').value, seller = document.getElementById('sellerSel').value || 'Mèt Kontwa';
     if (!isDevis && m === 'Kredi' && cli === 'Kliyan Kontwa') return alert('Mete non kliyan an pou kredi');
@@ -372,16 +465,16 @@
     const due = document.getElementById('dueDate').value || '';
     const recObj = { id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), iso: new Date().toISOString().slice(0,10), cli, ph, m, seller, items: [...ct], dsc, del, tot, prof, paid, bal, due };
 
-    if (isDevis) { dv.unshift(recObj); sv(); alert('Devis sove san touche stock la!'); }
+    if (isDevis) { dv.unshift(recObj); addLog(`Devis kreye: ${cli} (${tot})`); sv(); alert('Devis sove san touche stock la!'); }
     else {
       ct.forEach(i => { let p = pr.find(x => x.id === i.id); if (p) p.q = +(p.q - i.q).toFixed(2); });
-      sl.unshift(recObj);
+      sl.unshift(recObj); addLog(`Vant #${String(recObj.id).slice(-4)}: ${tot} ${st.c}`);
       if (cli !== 'Kliyan Kontwa') {
         let cf = cl.find(x => x.n.toLowerCase() === cli.toLowerCase());
         if (cf) { cf.tot += tot; cf.pts = (cf.pts||0) + Math.floor(tot/100); if (ph) cf.p = ph; }
         else cl.push({ n: cli, p: ph, tot, pts: Math.floor(tot/100) });
       }
-      sv(); showRec(recObj, 'FAKTI');
+      sv(); showRec(recObj, 'FAKTI'); checkLicense();
     }
     ct = []; ['cName','cPhone','advP','sDisc','sDel','cashGiven','dueDate'].forEach(i => document.getElementById(i).value = ['cName','cPhone','cashGiven','dueDate'].includes(i)?'':'0');
     document.getElementById('changeDisplay').innerText = ''; renC(); ui();
@@ -389,13 +482,14 @@
 
   function showRec(s, title) {
     const r = document.getElementById('rec'); r.style.display = 'block';
-    let msg = `*${st.n}* (${title} #${String(s.id).slice(-4)})\nDat: ${s.d} | Vandè: ${s.seller}\nKliyan: ${s.cli}\n` + s.items.map(i=>`- ${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*TOTAL: ${s.tot} ${st.c}*` + (s.bal>0?`\nRete Dwe: ${s.bal} ${st.c}`:'') + `\nPeman: ${st.p}`;
-    r.innerHTML = `<center><b>${st.n}</b> (${title})<br><small>${st.a} | ${st.p}</small><br><small>${s.d} - #${String(s.id).slice(-4)} (${s.seller})</small></center><hr>Kliyan: <b>${s.cli}</b> (${s.m})<hr>${s.items.map(i=>`<div>${i.q} ${i.u} ${i.n}: ${Math.round(i.price*i.q)} ${st.c}</div>`).join('')}<hr><b>TOTAL: ${s.tot} ${st.c}</b>${s.bal>0?`<br>Rete Dwe: <b>${s.bal} ${st.c}</b>`:''}<div class="grid"><button class="btn" onclick="window.print()">Enprime / PDF</button><button class="btn btn-wa" onclick='waSend(${JSON.stringify(s.ph)}, ${JSON.stringify(msg)})'>Voye sou WhatsApp</button></div>`;
-  }
-
-  function convertDevis(idx) {
+    let qrData = encodeURIComponent(`${st.n} | ${title} #${String(s.id).slice(-4)} | ${s.d} | Total: ${s.tot} ${st.c}`);
+    let qrImg = `https://qrserver.com{qrData}`;
+    let msg = `*${st.n}* (${title} #${String(s.id).slice(-4)})\nDat: ${s.d} | Vandè: ${s.seller}\nKliyan: ${s.cli}\n` + s.items.map(i=>`- ${i.q} ${i.u} ${i.n}${i.war?' ['+i.war+']':''}: ${Math.round(i.price*i.q)} ${st.c}`).join('\n') + `\n*TOTAL: ${s.tot} ${st.c}*` + (s.bal>0?`\nRete Dwe: ${s.bal} ${st.c}`:'') + `\nPeman: ${st.p}`;
+    r.innerHTML = `<center><b>${st.n}</b> (${title})<br><small>${st.a} | ${st.p}</small><br><small>${s.d} - #${String(s.id).slice(-4)} (${s.seller})</small></center><hr>Kliyan: <b>${s.cli}</b> (${s.m})<hr>${s.items.map(i=>`<div>${i.q} ${i.u} ${i.n}${i.war?' <small>('+i.war+')</small>':''}: ${Math.round(i.price*i.q)} ${st.c}</div>`).join('')}<hr><b>TOTAL: ${s.tot} ${st.c}</b>${s.bal>0?`<br>Rete Dwe: <b>${s.bal} ${st.c}</b>`:''}<div style="text-align:center;margin-top:8px;"><img src="${qrImg}" alt="QR" style="border:1px solid #ccc;padding:2px;background:#fff;" /></div><div class="grid"><button class="btn" onclick="window.print()">Enprime (${st.printFmt.toUpperCase()})</button><button class="btn btn-wa" onclick='waSend(${JSON.stringify(s.ph)}, ${JSON.stringify(msg)})'>Voye sou WhatsApp</button></div>`;
+                }
+                  function convertDevis(idx) {
     let d = dv[idx];
-    for (let i of d.items) { let p = pr.find(x => x.id === i.id); if (!p || p.q < i.q) return alert(`Stock ensifizan pou ${i.n}`); }
+    for (let i of d.items) { let p = pr.find(x => x.id === i.id); if (!p || p.q < i.q) return alert(`Stock kontwa ensifizan pou ${i.n}`); }
     ct = [...d.items]; document.getElementById('cName').value = d.cli; document.getElementById('cPhone').value = d.ph || '';
     document.getElementById('sDisc').value = d.dsc; document.getElementById('sDel').value = d.del;
     dv.splice(idx, 1); sv(); renC(); ui(); alert('Devis la chaje nan panye a!');
@@ -405,23 +499,37 @@
     const id = +document.getElementById('retP').value, q = +document.getElementById('retQ').value, type = document.getElementById('retType').value;
     let p = pr.find(x => x.id === id);
     if (!p || q <= 0) return alert('Kantite pa bon');
-    if (type === 'retou') { p.q = +(p.q + q).toFixed(2); alert(`${q} ${p.u} ${p.n} remèt nan stock la!`); }
-    else { if (q > p.q) return alert('Stock ensifizan'); p.q = +(p.q - q).toFixed(2); ex.unshift({ id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), desc: `Pèt/Kase: ${q} ${p.n}`, a: Math.round(p.cost * q) }); alert('Pèt anregistre!'); }
+    if (type === 'retou') { p.q = +(p.q + q).toFixed(2); addLog(`Retou: +${q} ${p.n}`); alert(`${q} ${p.u} ${p.n} remèt nan kontwa a!`); }
+    else { if (q > p.q) return alert('Stock ensifizan'); p.q = +(p.q - q).toFixed(2); ex.unshift({ id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), desc: `Pèt/Kase: ${q} ${p.n}`, a: Math.round(p.cost * q) }); addLog(`Pèt: -${q} ${p.n}`); alert('Pèt anregistre!'); }
     sv(); ui();
   }
 
   function payC(id) {
     let s = sl.find(x => x.id === id), v = +prompt(`Montan ${s.cli} peye (Dwe: ${s.bal}):`);
-    if (v > 0) { s.paid += v; s.bal = Math.max(0, s.tot - s.paid); sv(); ui(); }
+    if (v > 0) { s.paid += v; s.bal = Math.max(0, s.tot - s.paid); addLog(`Peman kredi ${s.cli}: +${v}`); sv(); ui(); }
+  }
+
+  function addSupDebt() {
+    const n = document.getElementById('supDebtName').value.trim(), a = +document.getElementById('supDebtAmt').value, due = document.getElementById('supDebtDue').value || '';
+    if (!n || a <= 0) return alert('Mete non founisè a ak montan dèt la');
+    supDebts.unshift({ id: Date.now(), n, tot: a, bal: a, due }); addLog(`Dèt founisè: ${n} (${a})`);
+    document.getElementById('supDebtName').value = ''; document.getElementById('supDebtAmt').value = ''; document.getElementById('supDebtDue').value = '';
+    sv(); ui();
+  }
+
+  function paySupDebt(id) {
+    let d = supDebts.find(x => x.id === id), v = +prompt(`Konbyen ou peye ${d.n}? (Rete: ${d.bal}):`);
+    if (v > 0) { d.bal = Math.max(0, d.bal - v); addLog(`Peman founisè ${d.n}: -${v}`); sv(); ui(); }
   }
 
   function addE() {
     const d = document.getElementById('eD').value.trim(), a = +document.getElementById('eA').value;
     if (!d || a <= 0) return alert('Ranpli rezon ak montan');
-    ex.unshift({ id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), desc: d, a });
+    ex.unshift({ id: Date.now(), d: new Date().toLocaleDateString('fr-HT'), desc: d, a }); addLog(`Depans: ${d} (${a})`);
     document.getElementById('eD').value = ''; document.getElementById('eA').value = ''; sv(); ui();
   }
-    function runCalc() {
+
+  function runCalc() {
     const t = document.getElementById('calcType').value, v1 = +document.getElementById('cVal1').value || 0, v2 = +document.getElementById('cVal2').value || 0;
     document.getElementById('cVal2Box').style.display = (t==='block'||t==='slab') ? 'block' : 'none';
     let out = '';
@@ -441,7 +549,7 @@
   function orderLowStock(phone, supName) {
     let lows = pr.filter(p => p.q <= 5);
     if (!lows.length) return alert('Pa gen okenn pwodwi ki gen stock ba kounye a!');
-    let msg = `Bonjou ${supName}, men kòmand *${st.n}* pou pwodwi ki prèske fini yo:\n` + lows.map(p => `- ${p.n} (Rete sèlman ${p.q} ${p.u})`).join('\n');
+    let msg = `Bonjou ${supName}, men kòmand *${st.n}* pou pwodwi ki prèske fini yo:\n` + lows.map(p => `- ${p.n} (Kontwa: ${p.q} ${p.u})`).join('\n');
     waSend(phone, msg);
   }
 
@@ -451,12 +559,12 @@
   }
 
   function saveNotes() { st.notes = document.getElementById('dailyNotes').value; sv(); alert('Nòt yo sove!'); }
-
-  function ui() {
-    document.body.classList.toggle('dark', !!st.dark);
+                  function ui() {
+    document.body.className = (st.dark ? 'dark ' : '') + (st.printFmt || 'pa4');
     document.getElementById('hName').innerText = st.n; document.getElementById('hInfo').innerText = `${st.a} | ${st.p}`;
     document.getElementById('stN').value = st.n; document.getElementById('stA').value = st.a; document.getElementById('stP').value = st.p;
-    document.getElementById('stC').value = st.c; document.getElementById('stRate').value = st.rate || 132; document.getElementById('stPin').value = st.pin || '';
+    document.getElementById('stC').value = st.c; document.getElementById('stRate').value = st.rate || 132;
+    document.getElementById('stPrint').value = st.printFmt || 'pa4'; document.getElementById('stPin').value = st.pin || '';
     document.getElementById('stSellers').value = st.sellers || 'Mèt Kontwa'; document.getElementById('dailyNotes').value = st.notes || '';
     document.querySelectorAll('.cur').forEach(e => e.innerText = st.c);
 
@@ -465,11 +573,14 @@
     if (curS) selS.value = curS;
 
     filterPos();
-    const sb = document.getElementById('stkB'), rp = document.getElementById('retP'); sb.innerHTML = ''; rp.innerHTML = ''; let low = 0;
+    const sb = document.getElementById('stkB'), rp = document.getElementById('retP'), tp = document.getElementById('trP');
+    sb.innerHTML = ''; rp.innerHTML = ''; tp.innerHTML = ''; let low = 0, todayStr = new Date().toISOString().slice(0,10);
     pr.forEach((p, x) => {
-      if (p.q <= 5) low++;
-      sb.innerHTML += `<tr><td><b>[${p.sku||'PRD'}] ${p.n}</b><br><small>${p.c} (${p.u})</small></td><td>${p.cost}/${p.price}</td><td>${p.q}</td><td><button class="btn btn-s btn-sm" onclick="quickAddStock(${p.id})">+Stk</button> <button class="btn btn-d" onclick="pr.splice(${x},1);sv();ui()">X</button></td></tr>`;
-      rp.innerHTML += `<option value="${p.id}">${p.n} (${p.q} ${p.u})</option>`;
+      let isExp = p.exp && p.exp <= todayStr;
+      if (p.q <= 5 || isExp) low++;
+      sb.innerHTML += `<tr><td><b>[${p.sku||'PRD'}] ${p.n}</b><br><small>${p.c} (${p.u}) ${p.exp?'| Exp:'+p.exp:''}</small></td><td>${p.price}/${p.whole||p.price}</td><td><b>${p.q}</b> / ${p.depot||0}</td><td><button class="btn btn-d" onclick="pr.splice(${x},1);sv();ui()">X</button></td></tr>`;
+      rp.innerHTML += `<option value="${p.id}">${p.n} (${p.q})</option>`;
+      tp.innerHTML += `<option value="${p.id}">${p.n} (Depo: ${p.depot||0})</option>`;
     });
 
     const db = document.getElementById('devB'); db.innerHTML = '';
@@ -479,13 +590,17 @@
     });
 
     const cb = document.getElementById('crdB'), hb = document.getElementById('hisB'); cb.innerHTML = ''; hb.innerHTML = '';
-    let todayStr = new Date().toISOString().slice(0,10), tDay = 0, crd = 0, grs = 0, prf = 0, catMap = {}, selMap = {};
+    let tDay = 0, crd = 0, grs = 0, prf = 0, catMap = {}, selMap = {}, prodMap = {};
     sl.forEach((s, idx) => {
       if (s.iso === todayStr) tDay += s.tot;
       crd += s.bal; grs += s.tot; prf += s.prof;
       selMap[s.seller||'Mèt'] = (selMap[s.seller||'Mèt'] || 0) + s.tot;
-      s.items.forEach(i => catMap[i.c||'Lòt'] = (catMap[i.c||'Lòt'] || 0) + Math.round(i.price * i.q));
-      hb.innerHTML += `<tr><td>${s.d}</td><td>${s.cli}</td><td>${s.tot}</td><td><button class="btn btn-sm" onclick="showRec(sl[${idx}],'FAKTI');go('pos',document.querySelector('nav button'))">Wè / WA</button></td></tr>`;
+      s.items.forEach(i => {
+        catMap[i.c||'Lòt'] = (catMap[i.c||'Lòt'] || 0) + Math.round(i.price * i.q);
+        if(!prodMap[i.n]) prodMap[i.n] = { q: 0, t: 0 };
+        prodMap[i.n].q += i.q; prodMap[i.n].t += Math.round(i.price * i.q);
+      });
+      hb.innerHTML += `<tr><td>${s.d}</td><td>${s.cli}</td><td>${s.tot}</td><td><button class="btn btn-sm" onclick="showRec(sl[${idx}],'FAKTI');go('pos',document.querySelector('nav button'))">Wè/WA</button></td></tr>`;
       if (s.bal > 0) {
         let isLate = s.due && s.due < todayStr;
         let rMsg = `Bonjou ${s.cli}, ti rapèl pou balans kredi ou nan *${st.n}* ki se *${s.bal} ${st.c}* (Fakti ${s.d}). Mèsi!`;
@@ -493,37 +608,48 @@
       }
     });
 
+    const sdb = document.getElementById('supDebtB'); sdb.innerHTML = '';
+    supDebts.forEach(d => { if (d.bal > 0) sdb.innerHTML += `<tr><td><b>${d.n}</b><br><small>${d.due||''}</small></td><td>${d.bal} ${st.c}</td><td><button class="btn btn-s btn-sm" onclick="paySupDebt(${d.id})">Peye</button></td></tr>`; });
+
     const clb = document.getElementById('cliB'), dl = document.getElementById('cliList'); clb.innerHTML = ''; dl.innerHTML = '';
-    cl.forEach(c => { clb.innerHTML += `<tr><td><b>${c.n}</b><br><small>${c.p||'-'}</small></td><td>${c.tot} ${st.c}</td><td><b>${c.pts||0} pts</b></td></tr>`; dl.innerHTML += `<option value="${c.n}">`; });
+    cl.forEach(c => {
+      let vipMsg = `Mèsi *${c.n}* dèske ou se yon kliyan VIP nan *${st.n}*! Ou gen *${c.pts||0} pwen fidèlite* sou kont ou.`;
+      clb.innerHTML += `<tr><td><b>${c.n}</b><br><small>${c.p||'-'}</small></td><td>${c.tot} ${st.c}</td><td><b>${c.pts||0} pts</b> <button class="btn btn-wa btn-sm" onclick='waSend(${JSON.stringify(c.p)},${JSON.stringify(vipMsg)})'>VIP</button></td></tr>`;
+      dl.innerHTML += `<option value="${c.n}">`;
+    });
 
     const supB = document.getElementById('supB'); supB.innerHTML = '';
-    spList.forEach((sp, x) => supB.innerHTML += `<tr><td><b>${sp.n}</b></td><td>${sp.s}</td><td><button class="btn btn-wa btn-sm" onclick='orderLowStock(${JSON.stringify(sp.p)},${JSON.stringify(sp.n)})'>Kòmande WA</button> <button class="btn btn-d" onclick="spList.splice(${x},1);sv();ui()">X</button></td></tr>`);
+    spList.forEach((sp, x) => supB.innerHTML += `<tr><td><b>${sp.n}</b></td><td>${sp.s}</td><td><button class="btn btn-wa btn-sm" onclick='orderLowStock(${JSON.stringify(sp.p)},${JSON.stringify(sp.n)})'>WA</button> <button class="btn btn-d" onclick="spList.splice(${x},1);sv();ui()">X</button></td></tr>`);
 
     const eb = document.getElementById('expB'); eb.innerHTML = ''; let tEx = 0;
     ex.forEach((e, x) => { tEx += e.a; eb.innerHTML += `<tr><td>${e.d}</td><td>${e.desc}</td><td>${e.a}</td><td><button class="btn btn-d" onclick="ex.splice(${x},1);sv();ui()">X</button></td></tr>`; });
 
+    let topArr = Object.keys(prodMap).map(k => ({ n: k, q: prodMap[k].q, t: prodMap[k].t })).sort((a,b) => b.t - a.t).slice(0,5);
+    document.getElementById('topProdB').innerHTML = topArr.map(x => `<tr><td><b>${x.n}</b></td><td>${x.q}</td><td>${x.t} ${st.c}</td></tr>`).join('') || '<tr><td colspan="3">Poko gen vant</td></tr>';
+
     let chartHtml = '';
-    Object.keys(catMap).forEach(k => { let pct = grs ? Math.round((catMap[k]/grs)*100) : 0; chartHtml += `<div style="font-size:0.75rem;">${k}: <b>${catMap[k]} ${st.c}</b> (${pct}%)</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div>`; });
-    document.getElementById('catChart').innerHTML = chartHtml || '<small>Poko gen done vant.</small>';
+    Object.keys(catMap).forEach(k => { let pct = grs ? Math.round((catMap[k]/grs)*100) : 0; chartHtml += `<div style="font-size:0.72rem;">${k}: <b>${catMap[k]} ${st.c}</b> (${pct}%)</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div>`; });
+    document.getElementById('catChart').innerHTML = chartHtml || '<small>Poko gen done.</small>';
 
     document.getElementById('selRepB').innerHTML = Object.keys(selMap).map(k => `<tr><td><b>${k}</b></td><td>${sl.filter(x=>(x.seller||'Mèt')===k).length}</td><td>${selMap[k]} ${st.c}</td></tr>`).join('');
+    document.getElementById('auditLogB').innerHTML = logs.map(l => `<div>• ${l}</div>`).join('') || 'Okenn aksyon poko anregistre.';
     document.getElementById('sToday').innerText = `${tDay} ${st.c}`; document.getElementById('sProf').innerText = `${prf} ${st.c}`;
     document.getElementById('sCred').innerText = `${crd} ${st.c}`; document.getElementById('sLow').innerText = low;
     document.getElementById('tExp').innerText = tEx; document.getElementById('rG').innerText = grs;
     document.getElementById('rP').innerText = prf; document.getElementById('rE').innerText = tEx; document.getElementById('rN').innerText = prf - tEx;
-    runCalc();
+    runCalc(); checkLicense();
   }
 
   function csv() {
     let c = "Dat,Vandè,Kliyan,Tel,Mod,Total,Benefis,Rete\n" + sl.map(s=>`"${s.d}","${s.seller||''}","${s.cli}","${s.ph||''}","${s.m}",${s.tot},${s.prof},${s.bal}`).join('\n');
-    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([c],{type:'text/csv'})); a.download = 'Rapo_BelPoze_Ultimate.csv'; a.click();
+    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([c],{type:'text/csv'})); a.download = 'Rapo_BelPoze_Enterprise.csv'; a.click();
   }
   function downloadBackupFile() {
-    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({st,pr,sl,dv,ex,cl,spList})],{type:'application/json'}));
-    a.download = `Backup_BelPoze_${new Date().toISOString().slice(0,10)}.json`; a.click();
+    let a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({st,pr,sl,dv,ex,cl,spList,supDebts,logs})],{type:'application/json'}));
+    a.download = `Backup_Enterprise_${new Date().toISOString().slice(0,10)}.json`; a.click();
   }
-  function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,dv,ex,cl,spList}); alert('Kòd kreye!'); }
-  function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; dv=d.dv||[]; ex=d.ex||[]; cl=d.cl||[]; spList=d.spList||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Kòd pa bon'); } }
+  function mkBk() { document.getElementById('bkA').value = JSON.stringify({st,pr,sl,dv,ex,cl,spList,supDebts,logs}); alert('Kòd kreye!'); }
+  function rsBk() { try { let d = JSON.parse(document.getElementById('bkA').value); st=d.st; pr=d.pr; sl=d.sl; dv=d.dv||[]; ex=d.ex||[]; cl=d.cl||[]; spList=d.spList||[]; supDebts=d.supDebts||[]; logs=d.logs||[]; sv(); ui(); alert('Done retabli!'); } catch(e){ alert('Kòd pa bon'); } }
   ui();
 </script>
 </body>
