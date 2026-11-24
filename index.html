@@ -71,7 +71,7 @@
         <p style="text-align:right;font-weight:bold;margin:8px 0;">Total: <span id="cTot">0</span> <span class="cur">HTG</span></p>
         <div class="grid">
           <div><label>Kliyan / Mèt</label><input type="text" id="cName" list="cliList" placeholder="Non kliyan" oninput="fillPhone()" /><datalist id="cliList"></datalist></div>
-          <div><label>Tel WhatsApp Kliyan</label><input type="tel" id="cPhone" placeholder="509XXXXXXXX" /></div>
+          <div><label>Tel WhatsApp Kliyan</label><input type="tel" id="cPhone" placeholder="42402215" /></div>
           <div><label>Mòd Peman</label><select id="pMeth" onchange="togC()"><option>Kach</option><option>MonCash</option><option>NatCash</option><option>Kredi</option></select></div>
           <div id="advB" style="display:none;"><label>Avans Peye</label><input type="number" id="advP" value="0" /></div>
         </div>
@@ -115,8 +115,8 @@
     <div class="card"><h2>Paramèt</h2><label>Non</label><input id="stN" /><label>Adrès</label><input id="stA" /><label>Tel</label><input id="stP" /><label>Lajan</label><select id="stC"><option>HTG</option><option>USD</option></select><button class="btn btn-s" onclick="saveSet()">Sove</button></div>
     <div class="card"><h2>Sovgade / Transfè</h2><button class="btn" onclick="mkBk()">Kreye Kòd</button><textarea id="bkA" rows="2" style="margin-top:6px;"></textarea><button class="btn btn-w" onclick="rsBk()">Retabli</button></div>
   </div>
-</div>
-<script>
+                              </div>
+                              <script>
   let st = JSON.parse(localStorage.getItem('bp2_st')) || { n: 'Quincaillerie Bel-poze', a: 'Thomassique, Sant', p: '+509 4240-2215', c: 'HTG' };
   let pr = JSON.parse(localStorage.getItem('bp2_pr')) || [
     { id: 1, n: 'Siman Gri 42.5kg', c: 'Konstriksyon', u: 'Sak', cost: 1150, price: 1350, q: 40 },
@@ -191,10 +191,11 @@
 
   function waSend(phone, text) {
     let clean = (phone || '').replace(/\D/g, '');
-    let url = clean ? `https://wa.me{clean}?text=${encodeURIComponent(text)}` : `https://wa.me{encodeURIComponent(text)}`;
-    window.open(url, '_blank');
+    if (clean.length === 8) clean = '509' + clean;
+    let base = 'https://' + 'wa.me/' + clean + '?text=';
+    window.open(base + encodeURIComponent(text), '_blank');
   }
-    function doneS(isDevis) {
+                                  function doneS(isDevis) {
     if (!ct.length) return;
     const cli = document.getElementById('cName').value.trim() || 'Kliyan Kontwa', ph = document.getElementById('cPhone').value.trim(), m = document.getElementById('pMeth').value;
     if (!isDevis && m === 'Kredi' && cli === 'Kliyan Kontwa') return alert('Mete non kliyan an pou kredi');
